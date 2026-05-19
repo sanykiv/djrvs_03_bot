@@ -1,0 +1,64 @@
+{
+  "sections": {
+    "sql": {
+      "title": "🗄️ SQL",
+      "topics": {
+        "select": {
+          "title": "SELECT — выборка данных",
+          "content": "SELECT используется для получения данных из таблицы.\n\nОсновной синтаксис:\n`SELECT столбец1, столбец2 FROM таблица;`\n\nПримеры:\n• `SELECT * FROM users;` — все строки\n• `SELECT name, age FROM users WHERE age > 18;` — с фильтром\n• `SELECT * FROM orders ORDER BY date DESC;` — с сортировкой",
+          "photo": null
+        },
+        "joins": {
+          "title": "JOIN — объединение таблиц",
+          "content": "JOIN объединяет строки из нескольких таблиц по условию.\n\nВиды JOIN:\n• *INNER JOIN* — только совпадающие строки\n• *LEFT JOIN* — все строки левой + совпадения справа\n• *RIGHT JOIN* — все строки правой + совпадения слева\n• *FULL JOIN* — все строки из обеих таблиц\n\nПример:\n`SELECT u.name, o.product FROM users u LEFT JOIN orders o ON u.id = o.user_id;`",
+          "photo": null
+        },
+        "group_by": {
+          "title": "GROUP BY и агрегатные функции",
+          "content": "GROUP BY группирует строки с одинаковыми значениями.\n\nЧасто используется с функциями:\n• `COUNT()` — количество строк\n• `SUM()` — сумма\n• `AVG()` — среднее\n• `MAX()` / `MIN()` — максимум/минимум\n\nПример:\n`SELECT city, COUNT(*) as users_count FROM users GROUP BY city;`\n\nФильтр по группам — `HAVING`:\n`SELECT city, COUNT(*) FROM users GROUP BY city HAVING COUNT(*) > 10;`",
+          "photo": null
+        }
+      }
+    },
+    "python": {
+      "title": "🐍 Python",
+      "topics": {
+        "lists": {
+          "title": "Списки (list)",
+          "content": "Список — упорядоченная изменяемая коллекция.\n\nСоздание:\n`my_list = [1, 2, 3, 'текст']`\n\nОсновные методы:\n• `append(x)` — добавить в конец\n• `remove(x)` — удалить элемент\n• `pop(i)` — удалить по индексу\n• `len(my_list)` — длина списка\n• `my_list[0]` — первый элемент\n• `my_list[-1]` — последний элемент",
+          "photo": null
+        },
+        "dict": {
+          "title": "Словари (dict)",
+          "content": "Словарь — коллекция пар ключ: значение.\n\nСоздание:\n`person = {'name': 'Иван', 'age': 25}`\n\nОсновные операции:\n• `person['name']` — получить значение\n• `person['city'] = 'Москва'` — добавить пару\n• `person.get('age', 0)` — безопасное получение\n• `person.keys()` — все ключи\n• `person.values()` — все значения\n• `del person['age']` — удалить ключ",
+          "photo": null
+        },
+        "functions": {
+          "title": "Функции",
+          "content": "Функция — блок кода, который можно переиспользовать.\n\nСоздание:\n`def greet(name):\n    return f'Привет, {name}!'`\n\nВызов:\n`greet('Иван')  # → 'Привет, Иван!'`\n\nАргументы по умолчанию:\n`def greet(name, greeting='Привет'):\n    return f'{greeting}, {name}!'`\n\nLambda (короткая функция):\n`square = lambda x: x ** 2`",
+          "photo": null
+        }
+      }
+    },
+    "pandas": {
+      "title": "🐼 Pandas",
+      "topics": {
+        "dataframe": {
+          "title": "DataFrame — основа Pandas",
+          "content": "DataFrame — двумерная таблица с метками строк и столбцов.\n\nСоздание:\n`import pandas as pd\ndf = pd.DataFrame({'name': ['Иван', 'Анна'], 'age': [25, 30]})`\n\nЗагрузка из файла:\n`df = pd.read_csv('file.csv')`\n\nОсновные атрибуты:\n• `df.shape` — (строки, столбцы)\n• `df.columns` — названия столбцов\n• `df.dtypes` — типы данных\n• `df.head(5)` — первые 5 строк",
+          "photo": null
+        },
+        "filtering": {
+          "title": "Фильтрация данных",
+          "content": "Фильтрация строк по условию:\n\n`df[df['age'] > 25]` — строки где age > 25\n\n`df[df['city'] == 'Москва']` — по значению\n\nНесколько условий:\n`df[(df['age'] > 25) & (df['city'] == 'Москва')]`\n\nВыбор столбцов:\n`df[['name', 'age']]` — несколько столбцов\n`df['name']` — один столбец (Series)",
+          "photo": null
+        },
+        "groupby": {
+          "title": "groupby — группировка",
+          "content": "groupby аналогичен GROUP BY в SQL.\n\nПример:\n`df.groupby('city')['salary'].mean()`\nсреднее зарплаты по городам\n\nНесколько агрегаций сразу:\n`df.groupby('city').agg({'salary': 'mean', 'age': 'max'})`\n\nСброс индекса:\n`df.groupby('city')['salary'].mean().reset_index()`",
+          "photo": null
+        }
+      }
+    }
+  }
+}
