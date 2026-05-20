@@ -518,7 +518,137 @@
               "content": "pivot_table() — мощный аналог сводных таблиц Excel.\n\n`df = pd.DataFrame({\n    'city': ['Москва','Москва','СПб','СПб','Казань'],\n    'category': ['еда','электроника','еда','электроника','еда'],\n    'sales': [100, 500, 80, 400, 60]\n})`\n\n*Сводная таблица: города x категории:*\n`pd.pivot_table(\n    df,\n    values='sales',\n    index='city',\n    columns='category',\n    aggfunc='sum'\n)`\n# category    еда  электроника\n# city\n# Казань       60          NaN\n# Москва      100          500\n# СПб          80          400\n\n*Заполнить NaN нулями:*\n`pd.pivot_table(..., fill_value=0)`\n\n*Несколько функций агрегации:*\n`pd.pivot_table(..., aggfunc=['sum', 'mean'])`\n\n*Добавить итоги:*\n`pd.pivot_table(..., margins=True, margins_name='Итого')`",
               "photo": null
             }
-          }
+          },
+          "sql": {
+  "title": "🗄️ SQL",
+  "topics": {
+    "sql1": {
+      "title": "1. Оператор SELECT",
+      "subtopics": {
+        "sql1_1": {
+          "title": "SELECT — основы выборки",
+          "content": "SELECT — самая главная команда SQL. Она извлекает данные из таблицы.\n\n*Базовый синтаксис:*\n`SELECT столбец1, столбец2 FROM таблица;`\n\n*Выбрать все столбцы:*\n`SELECT * FROM employees;`\n\n*Выбрать конкретные столбцы:*\n`SELECT name, age, salary FROM employees;`\n\n*Псевдонимы столбцов (AS):*\n`SELECT name AS имя, salary AS зарплата`\n`FROM employees;`\n\n*Убрать дубликаты — DISTINCT:*\n`SELECT DISTINCT city FROM employees;`\n# Вернёт уникальные города\n\n*Ограничить количество строк — LIMIT:*\n`SELECT * FROM employees LIMIT 10;`\n# Только первые 10 строк\n\n*Порядок выполнения запроса:*\nFROM -> WHERE -> SELECT -> ORDER BY -> LIMIT",
+          "photo": null
+        },
+        "sql1_2": {
+          "title": "WHERE — фильтрация строк",
+          "content": "WHERE фильтрует строки по условию — как if в Python.\n\n*Синтаксис:*\n`SELECT * FROM employees WHERE условие;`\n\n*Примеры:*\n`SELECT * FROM employees WHERE age > 30;`\n`SELECT * FROM employees WHERE city = 'Москва';`\n`SELECT * FROM employees WHERE salary != 50000;`\n\n*Операторы сравнения:*\n`=`   — равно\n`!=`  — не равно\n`>`   — больше\n`<`   — меньше\n`>=`  — больше или равно\n`<=`  — меньше или равно\n\n*Логические операторы:*\n`SELECT * FROM employees`\n`WHERE age > 25 AND city = 'Москва';`\n\n`SELECT * FROM employees`\n`WHERE city = 'Москва' OR city = 'СПб';`\n\n*Отрицание:*\n`SELECT * FROM employees WHERE NOT city = 'Казань';`",
+          "photo": null
+        },
+        "sql1_3": {
+          "title": "ORDER BY, BETWEEN, IN, LIKE",
+          "content": "*ORDER BY — сортировка результата:*\n`SELECT * FROM employees ORDER BY salary;`\n# По возрастанию (ASC — по умолчанию)\n\n`SELECT * FROM employees ORDER BY salary DESC;`\n# По убыванию\n\n`SELECT * FROM employees ORDER BY city ASC, salary DESC;`\n# Сначала по городу, потом по зарплате\n\n*BETWEEN — диапазон значений:*\n`SELECT * FROM employees WHERE salary BETWEEN 50000 AND 100000;`\n# Включительно оба конца!\n\n*IN — список значений:*\n`SELECT * FROM employees WHERE city IN ('Москва', 'СПб', 'Казань');`\n# Вместо трёх OR\n\n`SELECT * FROM employees WHERE city NOT IN ('Казань');`\n\n*LIKE — поиск по шаблону:*\n`SELECT * FROM employees WHERE name LIKE 'А%';`\n# Имена начинающиеся на А\n\n`SELECT * FROM employees WHERE name LIKE '%ов';`\n# Имена заканчивающиеся на ов\n\n`SELECT * FROM employees WHERE name LIKE '%ван%';`\n# Содержит ван\n\n% — любое количество символов\n_ — ровно один символ",
+          "photo": null
+        },
+        "sql1_4": {
+          "title": "Агрегатные функции",
+          "content": "Агрегатные функции считают итоговые значения по группе строк.\n\n*Основные функции:*\n`COUNT(*)` — количество строк\n`COUNT(column)` — количество непустых значений\n`SUM(column)` — сумма\n`AVG(column)` — среднее значение\n`MAX(column)` — максимум\n`MIN(column)` — минимум\n\n*Примеры:*\n`SELECT COUNT(*) FROM employees;`\n# Сколько всего сотрудников\n\n`SELECT AVG(salary) FROM employees;`\n# Средняя зарплата\n\n`SELECT MAX(salary), MIN(salary) FROM employees;`\n# Максимальная и минимальная зарплата\n\n`SELECT SUM(salary) FROM employees WHERE city = 'Москва';`\n# Суммарная зарплата москвичей\n\n*COUNT(*) vs COUNT(column):*\n`COUNT(*)` — считает все строки включая NULL\n`COUNT(column)` — пропускает NULL\n\n`SELECT COUNT(*), COUNT(phone) FROM employees;`\n# COUNT(*) = 100, COUNT(phone) = 73 (у 27 нет телефона)",
+          "photo": null
+        }
+      }
+    },
+    "sql2": {
+      "title": "2. Группировка — GROUP BY",
+      "subtopics": {
+        "sql2_1": {
+          "title": "GROUP BY — основы",
+          "content": "GROUP BY группирует строки с одинаковыми значениями и применяет агрегатную функцию к каждой группе.\n\n*Синтаксис:*\n`SELECT столбец, ФУНКЦИЯ(столбец)`\n`FROM таблица`\n`GROUP BY столбец;`\n\n*Пример — количество сотрудников по городам:*\n`SELECT city, COUNT(*) AS employees_count`\n`FROM employees`\n`GROUP BY city;`\n# Москва  — 45\n# СПб     — 30\n# Казань  — 15\n\n*Средняя зарплата по отделам:*\n`SELECT department, AVG(salary) AS avg_salary`\n`FROM employees`\n`GROUP BY department;`\n\n*Группировка по нескольким столбцам:*\n`SELECT city, department, COUNT(*)`\n`FROM employees`\n`GROUP BY city, department;`\n\nВажно: в SELECT можно писать только те столбцы, которые есть в GROUP BY, или агрегатные функции!",
+          "photo": null
+        },
+        "sql2_2": {
+          "title": "HAVING — фильтрация групп",
+          "content": "HAVING фильтрует результат после группировки — WHERE нельзя использовать с агрегатными функциями.\n\n*Правило:*\n`WHERE` — фильтрует строки ДО группировки\n`HAVING` — фильтрует группы ПОСЛЕ группировки\n\n*Пример — города где больше 10 сотрудников:*\n`SELECT city, COUNT(*) AS cnt`\n`FROM employees`\n`GROUP BY city`\n`HAVING COUNT(*) > 10;`\n\n*Отделы со средней зарплатой выше 80000:*\n`SELECT department, AVG(salary) AS avg_sal`\n`FROM employees`\n`GROUP BY department`\n`HAVING AVG(salary) > 80000;`\n\n*WHERE и HAVING вместе:*\n`SELECT department, AVG(salary)`\n`FROM employees`\n`WHERE city = 'Москва'`\n`GROUP BY department`\n`HAVING AVG(salary) > 70000;`\n# Сначала берём только москвичей (WHERE),\n# потом группируем и фильтруем группы (HAVING)\n\n*Порядок выполнения:*\nFROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY",
+          "photo": null
+        }
+      }
+    },
+    "sql3": {
+      "title": "3. Основы работы с датами",
+      "subtopics": {
+        "sql3_1": {
+          "title": "Типы дат и основные функции",
+          "content": "SQL работает с датами через специальные типы данных и функции.\n\n*Типы дат:*\n`DATE` — только дата: '2024-01-15'\n`TIME` — только время: '14:30:00'\n`DATETIME` — дата и время: '2024-01-15 14:30:00'\n`TIMESTAMP` — метка времени (с часовым поясом)\n\n*Текущая дата и время:*\n`SELECT NOW();`          — текущие дата и время\n`SELECT CURDATE();`      — текущая дата\n`SELECT CURTIME();`      — текущее время\n`SELECT CURRENT_DATE;`   — аналог CURDATE()\n\n*Извлечение части даты:*\n`SELECT YEAR(order_date) FROM orders;`\n`SELECT MONTH(order_date) FROM orders;`\n`SELECT DAY(order_date) FROM orders;`\n`SELECT HOUR(created_at) FROM logs;`\n`SELECT DAYOFWEEK(order_date) FROM orders;`\n# 1 = воскресенье, 2 = понедельник ... 7 = суббота",
+          "photo": null
+        },
+        "sql3_2": {
+          "title": "Фильтрация и вычисления с датами",
+          "content": "*Фильтрация по дате:*\n`SELECT * FROM orders`\n`WHERE order_date = '2024-01-15';`\n\n`SELECT * FROM orders`\n`WHERE order_date BETWEEN '2024-01-01' AND '2024-03-31';`\n\n`SELECT * FROM orders`\n`WHERE YEAR(order_date) = 2024 AND MONTH(order_date) = 1;`\n\n*Разница между датами — DATEDIFF:*\n`SELECT DATEDIFF('2024-12-31', '2024-01-01');`\n# 365 (разница в днях)\n\n`SELECT name, DATEDIFF(NOW(), hire_date) AS days_worked`\n`FROM employees;`\n\n*Прибавить/отнять время — DATE_ADD:*\n`SELECT DATE_ADD('2024-01-01', INTERVAL 30 DAY);`\n# 2024-01-31\n\n`SELECT DATE_ADD(NOW(), INTERVAL 1 MONTH);`\n# +1 месяц от сегодня\n\n`SELECT DATE_SUB(NOW(), INTERVAL 7 DAY);`\n# -7 дней от сегодня\n\n*Форматирование даты — DATE_FORMAT:*\n`SELECT DATE_FORMAT(order_date, '%d.%m.%Y') FROM orders;`\n# 15.01.2024",
+          "photo": null
+        }
+      }
+    },
+    "sql4": {
+      "title": "4. Соединения таблиц",
+      "subtopics": {
+        "sql4_1": {
+          "title": "Что такое JOIN и зачем он нужен",
+          "content": "JOIN объединяет строки из двух или более таблиц по условию.\n\n*Пример: две таблицы*\n\nТаблица users:\n`id | name`\n`1  | Анна`\n`2  | Иван`\n`3  | Мария`\n\nТаблица orders:\n`id | user_id | product`\n`1  | 1       | ноутбук`\n`2  | 2       | телефон`\n`3  | 1       | мышь`\n\n*Без JOIN — нельзя узнать кто что заказал.*\nС JOIN — можно соединить по user_id = id.\n\n*Виды JOIN:*\n`INNER JOIN` — только совпадающие строки\n`LEFT JOIN`  — все из левой + совпадения из правой\n`RIGHT JOIN` — все из правой + совпадения из левой\n`FULL JOIN`  — все строки из обеих таблиц\n\nСинтаксис:\n`SELECT поля`\n`FROM таблица1`\n`JOIN таблица2 ON таблица1.ключ = таблица2.ключ;`",
+          "photo": null
+        },
+        "sql4_2": {
+          "title": "INNER JOIN и LEFT JOIN",
+          "content": "*INNER JOIN — только совпадения:*\n`SELECT u.name, o.product`\n`FROM users u`\n`INNER JOIN orders o ON u.id = o.user_id;`\n# Анна — ноутбук\n# Анна — мышь\n# Иван — телефон\n# Мария не попадёт — у неё нет заказов!\n\n*LEFT JOIN — все из левой таблицы:*\n`SELECT u.name, o.product`\n`FROM users u`\n`LEFT JOIN orders o ON u.id = o.user_id;`\n# Анна  — ноутбук\n# Анна  — мышь\n# Иван  — телефон\n# Мария — NULL (нет заказов, но попадает!)\n\n*Найти пользователей БЕЗ заказов:*\n`SELECT u.name`\n`FROM users u`\n`LEFT JOIN orders o ON u.id = o.user_id`\n`WHERE o.user_id IS NULL;`\n# Мария\n\n*Псевдонимы таблиц:*\n`FROM users u` — u это сокращение для users\nЭто удобно когда имена таблиц длинные.",
+          "photo": null
+        },
+        "sql4_3": {
+          "title": "Несколько JOIN и RIGHT/FULL JOIN",
+          "content": "*Несколько JOIN в одном запросе:*\n`SELECT u.name, o.product, p.price`\n`FROM users u`\n`JOIN orders o ON u.id = o.user_id`\n`JOIN products p ON o.product_id = p.id;`\n\n*RIGHT JOIN — все из правой таблицы:*\n`SELECT u.name, o.product`\n`FROM users u`\n`RIGHT JOIN orders o ON u.id = o.user_id;`\n# Все заказы попадают, даже если пользователь удалён\n\n*FULL JOIN — все строки из обеих:*\n`SELECT u.name, o.product`\n`FROM users u`\n`FULL OUTER JOIN orders o ON u.id = o.user_id;`\n# Все пользователи + все заказы\n# NULL там где нет совпадений\n\n*Самосоединение (SELF JOIN) — таблица с собой:*\n`SELECT e.name, m.name AS manager`\n`FROM employees e`\n`LEFT JOIN employees m ON e.manager_id = m.id;`\n# Каждый сотрудник + его менеджер из той же таблицы\n\nПодсказка:\nINNER — строгое пересечение\nLEFT — приоритет левой таблицы\nRIGHT — приоритет правой таблицы\nFULL — все данные из обеих",
+          "photo": null
+        }
+      }
+    },
+    "sql5": {
+      "title": "5. Подзапросы в SQL",
+      "subtopics": {
+        "sql5_1": {
+          "title": "Что такое подзапрос?",
+          "content": "Подзапрос — это SELECT внутри другого SELECT. Позволяет использовать результат одного запроса в другом.\n\n*Синтаксис:*\n`SELECT * FROM таблица`\n`WHERE столбец = (SELECT ... FROM ...);`\n\n*Пример — сотрудники с зарплатой выше средней:*\n`SELECT name, salary`\n`FROM employees`\n`WHERE salary > (SELECT AVG(salary) FROM employees);`\n\nВнутренний запрос выполняется первым:\n1. `SELECT AVG(salary) FROM employees` -> 75000\n2. `SELECT name, salary FROM employees WHERE salary > 75000`\n\n*Подзапрос в FROM:*\n`SELECT dept, avg_sal`\n`FROM (`\n`    SELECT department AS dept, AVG(salary) AS avg_sal`\n`    FROM employees`\n`    GROUP BY department`\n`) AS dept_stats`\n`WHERE avg_sal > 80000;`\n\nПодзапрос в FROM должен иметь псевдоним (AS dept_stats)!",
+          "photo": null
+        },
+        "sql5_2": {
+          "title": "IN, EXISTS, коррелированные подзапросы",
+          "content": "*Подзапрос с IN:*\n`SELECT name FROM employees`\n`WHERE department_id IN (`\n`    SELECT id FROM departments WHERE city = 'Москва'`\n`);`\n# Сотрудники московских отделов\n\n*EXISTS — проверяет существование строк:*\n`SELECT name FROM users u`\n`WHERE EXISTS (`\n`    SELECT 1 FROM orders o WHERE o.user_id = u.id`\n`);`\n# Пользователи у которых есть хоть один заказ\n\n`NOT EXISTS` — у которых нет заказов:\n`WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)`\n\n*Коррелированный подзапрос — ссылается на внешний:*\n`SELECT name, salary,`\n`    (SELECT AVG(salary) FROM employees e2`\n`     WHERE e2.department = e1.department) AS dept_avg`\n`FROM employees e1;`\n# Для каждого сотрудника — его зарплата и средняя по отделу\n\nIN — когда нужен список значений\nEXISTS — когда нужно проверить наличие\nEXISTS часто быстрее IN на больших данных",
+          "photo": null
+        }
+      }
+    },
+    "sql6": {
+      "title": "6. Оконные функции",
+      "subtopics": {
+        "sql6_1": {
+          "title": "Что такое оконные функции?",
+          "content": "Оконные функции выполняют вычисление по набору строк (окну), не сворачивая их в одну — в отличие от GROUP BY.\n\n*Синтаксис:*\n`ФУНКЦИЯ() OVER (PARTITION BY столбец ORDER BY столбец)`\n\n*Пример — зарплата + средняя по отделу в одной строке:*\n\nС GROUP BY — теряем детали:\n`SELECT department, AVG(salary) FROM employees GROUP BY department;`\n# Только отдел и среднее, без имён!\n\nС оконной функцией — сохраняем все строки:\n`SELECT name, department, salary,`\n`    AVG(salary) OVER (PARTITION BY department) AS dept_avg`\n`FROM employees;`\n# Анна | IT | 90000 | 85000\n# Иван | IT | 80000 | 85000\n# Мария| HR | 70000 | 70000\n\nPARTITION BY — разбивает на группы (как GROUP BY)\nNO PARTITION — считает по всей таблице\n\n*Без PARTITION — среднее по всей таблице:*\n`AVG(salary) OVER ()` — скобки обязательны!",
+          "photo": null
+        },
+        "sql6_2": {
+          "title": "ROW_NUMBER, RANK, DENSE_RANK",
+          "content": "Функции ранжирования — нумеруют или ранжируют строки внутри группы.\n\n*ROW_NUMBER — порядковый номер:*\n`SELECT name, salary,`\n`    ROW_NUMBER() OVER (ORDER BY salary DESC) AS row_num`\n`FROM employees;`\n# 1, 2, 3, 4... (всегда уникальные номера)\n\n*RANK — ранг с пропусками:*\n`SELECT name, salary,`\n`    RANK() OVER (ORDER BY salary DESC) AS rank`\n`FROM employees;`\n# При одинаковой зарплате: 1, 2, 2, 4 (пропуск!)\n\n*DENSE_RANK — ранг без пропусков:*\n`SELECT name, salary,`\n`    DENSE_RANK() OVER (ORDER BY salary DESC) AS drank`\n`FROM employees;`\n# При одинаковой зарплате: 1, 2, 2, 3 (без пропуска)\n\n*Топ-1 сотрудник по зарплате в каждом отделе:*\n`SELECT * FROM (`\n`    SELECT name, department, salary,`\n`        ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn`\n`    FROM employees`\n`) t`\n`WHERE rn = 1;`",
+          "photo": null
+        },
+        "sql6_3": {
+          "title": "LAG, LEAD и накопительные функции",
+          "content": "*LAG — значение предыдущей строки:*\n`SELECT month, revenue,`\n`    LAG(revenue) OVER (ORDER BY month) AS prev_revenue`\n`FROM monthly_sales;`\n# Январь: 100 | NULL\n# Февраль: 150 | 100\n# Март: 120 | 150\n\n*Изменение по сравнению с прошлым месяцем:*\n`SELECT month, revenue,`\n`    revenue - LAG(revenue) OVER (ORDER BY month) AS diff`\n`FROM monthly_sales;`\n\n*LEAD — значение следующей строки:*\n`SELECT month, revenue,`\n`    LEAD(revenue) OVER (ORDER BY month) AS next_revenue`\n`FROM monthly_sales;`\n\n*SUM() OVER — накопительная сумма:*\n`SELECT month, revenue,`\n`    SUM(revenue) OVER (ORDER BY month) AS cumulative`\n`FROM monthly_sales;`\n# Январь: 100 | 100\n# Февраль: 150 | 250\n# Март: 120 | 370\n\n*Скользящее среднее за 3 месяца:*\n`AVG(revenue) OVER (ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)`",
+          "photo": null
+        }
+      }
+    },
+    "sql7": {
+      "title": "7. Задачи с собеседований",
+      "subtopics": {
+        "sql7_1": {
+          "title": "Задачи на SELECT и фильтрацию",
+          "content": "*Задача 1: Найти дубликаты в таблице*\n`SELECT email, COUNT(*) AS cnt`\n`FROM users`\n`GROUP BY email`\n`HAVING COUNT(*) > 1;`\n\n*Задача 2: Второй по величине оклад*\n`SELECT MAX(salary)`\n`FROM employees`\n`WHERE salary < (SELECT MAX(salary) FROM employees);`\n\nИли через LIMIT:\n`SELECT DISTINCT salary`\n`FROM employees`\n`ORDER BY salary DESC`\n`LIMIT 1 OFFSET 1;`\n\n*Задача 3: Удалить дубликаты, оставив одну запись*\n`DELETE FROM users`\n`WHERE id NOT IN (`\n`    SELECT MIN(id) FROM users GROUP BY email`\n`);`\n\n*Задача 4: Пользователи, не сделавшие ни одного заказа*\n`SELECT u.name`\n`FROM users u`\n`LEFT JOIN orders o ON u.id = o.user_id`\n`WHERE o.id IS NULL;`",
+          "photo": null
+        },
+        "sql7_2": {
+          "title": "Задачи на GROUP BY и JOIN",
+          "content": "*Задача 1: Топ-3 города по количеству заказов*\n`SELECT city, COUNT(*) AS orders_cnt`\n`FROM users u`\n`JOIN orders o ON u.id = o.user_id`\n`GROUP BY city`\n`ORDER BY orders_cnt DESC`\n`LIMIT 3;`\n\n*Задача 2: Процент от общей суммы*\n`SELECT department, SUM(salary) AS dept_sum,`\n`    ROUND(SUM(salary) * 100.0 / (SELECT SUM(salary) FROM employees), 2) AS pct`\n`FROM employees`\n`GROUP BY department;`\n\n*Задача 3: Сотрудники с зарплатой выше средней по своему отделу*\n`SELECT name, department, salary`\n`FROM employees e`\n`WHERE salary > (`\n`    SELECT AVG(salary)`\n`    FROM employees`\n`    WHERE department = e.department`\n`);`\n\n*Задача 4: Ежемесячный прирост продаж*\n`SELECT month, revenue,`\n`    ROUND((revenue - LAG(revenue) OVER (ORDER BY month)) * 100.0 /`\n`        LAG(revenue) OVER (ORDER BY month), 2) AS growth_pct`\n`FROM monthly_sales;`",
+          "photo": null
+        }
+      }
+    }
+  }
+}
         }
       }
     }
