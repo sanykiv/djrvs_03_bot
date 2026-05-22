@@ -4,7 +4,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
 
 # ========== НАСТРОЙКИ ==========
-TOKEN = os.getenv("BOT_TOKEN")
+TOKEN = "8774753664:AAGViLrRmaMv6pbwn3d0q7CDu50Nz9md8bM"
 DATA_FILE = "data.json"
 # ================================
 
