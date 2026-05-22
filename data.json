@@ -1,0 +1,784 @@
+{
+  "sections": {
+    "python": {
+      "title": "🐍 Python",
+      "topics": {
+        "variables": {
+          "title": "1. Переменные и типы данных",
+          "subtopics": {
+            "v1": {
+              "title": "Что такое переменная?",
+              "content": "Переменная — это <b>имя</b>, под которым хранится значение. Представь коробку с наклейкой: наклейка — имя, содержимое — значение.\n\n<b>Создание переменной:</b>\n<code>name = 'Иван'</code>\n<code>age = 25</code>\n<code>height = 1.82</code>\n\nЗнак <code>=</code> — это <b>присваивание</b>, не равенство. Ты говоришь Python: «Положи это значение в переменную».\n\n<b>Переменную можно изменить в любой момент:</b>\n<code>x = 10</code>\n<code>x = 99  # теперь x = 99</code>\n\n<b>Правила именования:</b>\n• Только буквы, цифры и <code>_</code>\n• Нельзя начинать с цифры: <code>2name</code> — ошибка\n• Регистр важен: <code>Name</code> и <code>name</code> — разные переменные\n• Нельзя использовать: <code>if</code>, <code>for</code>, <code>class</code>, <code>return</code> и т.д.\n\nПравильно: <code>user_name</code>, <code>total_sum</code>, <code>item2</code>\nНеправильно: <code>2item</code>, <code>my-var</code>, <code>for</code>",
+              "photo": null
+            },
+            "v2": {
+              "title": "Основные типы данных",
+              "content": "Python сам определяет тип — тебе не нужно объявлять его явно.\n\n<b>int — целое число</b>\n<code>age = 25</code>\n<code>count = -10</code>\n\n<b>float — дробное число</b>\n<code>price = 9.99</code>\n<code>pi = 3.14159</code>\n\n<b>str — строка (текст)</b>\n<code>name = 'Иван'</code>\n<code>city = \"Москва\"</code>\n\n<b>bool — булево значение</b>\n<code>is_active = True</code>\n<code>is_done = False</code>\nТолько два значения: True или False (с большой буквы!)\n\n<b>None — отсутствие значения</b>\n<code>result = None</code>\nИспользуется когда значение ещё неизвестно\n\n<b>Узнать тип переменной:</b>\n<code>type(age)</code>       # int\n<code>type(price)</code>     # float\n<code>type(name)</code>      # str\n<code>type(is_active)</code> # bool",
+              "photo": null
+            },
+            "v3": {
+              "title": "Преобразование типов",
+              "content": "Иногда нужно превратить один тип в другой — это <b>приведение типов</b>.\n\n<b>int() — в целое число</b>\n<code>int('42')</code>    # 42\n<code>int(3.99)</code>    # 3 (дробная часть отбрасывается!)\n<code>int(True)</code>    # 1\n<code>int(False)</code>   # 0\n\n<b>float() — в дробное число</b>\n<code>float('3.14')</code> # 3.14\n<code>float(10)</code>     # 10.0\n\n<b>str() — в строку</b>\n<code>str(100)</code>      # '100'\n<code>str(3.14)</code>     # '3.14'\n\n<b>bool() — в булево</b>\n<code>bool(0)</code>       # False\n<code>bool(1)</code>       # True\n<code>bool('')</code>      # False (пустая строка = False)\n<code>bool('текст')</code> # True\n<code>bool(None)</code>    # False\n\nНельзя конвертировать несовместимые типы:\n<code>int('привет')</code> # ValueError!\n\nПеред конвертацией убедись, что строка содержит число.",
+              "photo": null
+            },
+            "v4": {
+              "title": "Ввод данных — input()",
+              "content": "Функция <code>input()</code> получает данные от пользователя с клавиатуры.\n\n<b>Синтаксис:</b>\n<code>переменная = input('Текст подсказки: ')</code>\n\n<b>Пример:</b>\n<code>name = input('Как тебя зовут? ')</code>\n<code>print('Привет,', name)</code>\n\nВажно: <code>input()</code> всегда возвращает строку (str)!\n\nЕсли нужно число — сразу конвертируй:\n<code>age = int(input('Сколько тебе лет? '))</code>\n<code>price = float(input('Введи цену: '))</code>\n\n<b>Практический пример:</b>\n<code>a = int(input('Первое число: '))</code>\n<code>b = int(input('Второе число: '))</code>\n<code>print('Сумма:', a + b)</code>\n\nСовет: Всегда добавляй пробел перед закрывающей кавычкой:\n<code>input('Введи имя: ')</code> — пробел перед кавычкой",
+              "photo": null
+            }
+          }
+        },
+        "arithmetic": {
+          "title": "2. Арифметические операции",
+          "subtopics": {
+            "a1": {
+              "title": "Основные операции",
+              "content": "Python поддерживает все стандартные математические операции.\n\n<b>Сложение +</b>\n<code>5 + 3</code>   # 8\n<code>2.5 + 1</code> # 3.5\n\n<b>Вычитание -</b>\n<code>10 - 4</code>  # 6\n<code>0 - 5</code>   # -5\n\n<b>Умножение </b>\n<code>4 * 3</code>   # 12\n<code>2.5 * 2</code> # 5.0\n\n<b>Деление /</b>\n<code>10 / 2</code>  # 5.0 (всегда возвращает float!)\n<code>7 / 2</code>   # 3.5\n\n<b>Целочисленное деление //</b>\n<code>7 // 2</code>  # 3 (дробная часть отбрасывается)\n<code>10 // 3</code> # 3\n\n<b>Остаток от деления %</b>\n<code>7 % 2</code>   # 1\n<code>10 % 3</code>  # 1\nИспользуется для проверки чётности: <code>n % 2 == 0</code>\n\n<b>Возведение в степень </b>**\n<code>2 ** 3</code>   # 8\n<code>9 ** 0.5</code> # 3.0 (квадратный корень)",
+              "photo": null
+            },
+            "a2": {
+              "title": "Порядок операций и скобки",
+              "content": "Python соблюдает математический порядок операций.\n\n<b>Приоритет (от высшего к низшему):</b>\n1. () — скобки\n2. ** — степень\n3. *, /, //, % — умножение и деление\n4. +, - — сложение и вычитание\n\n<b>Примеры:</b>\n<code>2 + 3 * 4</code>     # 14 (сначала умножение)\n<code>(2 + 3) * 4</code>   # 20 (сначала скобки)\n<code>2 ** 3 + 1</code>    # 9\n<code>10 / 2 + 3</code>    # 8.0\n\nСовет: Используй скобки даже когда не обязательно — код читается лучше:\n<code>result = (price * quantity) + tax</code>",
+              "photo": null
+            },
+            "a3": {
+              "title": "Операторы присваивания",
+              "content": "Сокращённые операции: изменить переменную и сразу сохранить.\n\n<b>Полная запись — Сокращённая:</b>\n<code>x = x + 5</code>  ->  <code>x += 5</code>\n<code>x = x - 3</code>  ->  <code>x -= 3</code>\n<code>x = x <b> 2</code>  ->  <code>x </b>= 2</code>\n<code>x = x / 4</code>  ->  <code>x /= 4</code>\n<code>x = x *<b> 2</code> ->  <code>x </b>*= 2</code>\n<code>x = x % 3</code>  ->  <code>x %= 3</code>\n\n<b>Пример:</b>\n<code>score = 0</code>\n<code>score += 10  # игрок заработал 10 очков</code>\n<code>score += 5   # ещё 5</code>\n<code>print(score) # 15</code>\n\nОчень часто используется в циклах и счётчиках.",
+              "photo": null
+            },
+            "a4": {
+              "title": "Встроенные математические функции",
+              "content": "Python имеет встроенные функции для математики.\n\n<b>Без импорта:</b>\n<code>abs(-5)</code>           # 5 (модуль числа)\n<code>round(3.7)</code>        # 4 (округление)\n<code>round(3.14159, 2)</code> # 3.14 (до 2 знаков)\n<code>max(3, 7, 1)</code>      # 7 (максимум)\n<code>min(3, 7, 1)</code>      # 1 (минимум)\n<code>sum([1,2,3])</code>      # 6 (сумма списка)\n\n<b>Модуль math (нужен импорт):</b>\n<code>import math</code>\n\n<code>math.sqrt(16)</code>   # 4.0 (квадратный корень)\n<code>math.floor(3.9)</code> # 3 (округление вниз)\n<code>math.ceil(3.1)</code>  # 4 (округление вверх)\n<code>math.pi</code>         # 3.14159...\n\n<code>import math</code> пишется один раз в начале файла.",
+              "photo": null
+            }
+          }
+        },
+        "conditions": {
+          "title": "3. Оператор условия",
+          "subtopics": {
+            "c1": {
+              "title": "if / else — основа условий",
+              "content": "Условие позволяет выполнять разный код в зависимости от ситуации.\n\n<b>Синтаксис:</b>\n<code>if условие:</code>\n<code>    # код если True</code>\n<code>else:</code>\n<code>    # код если False</code>\n\nОтступ 4 пробела (или Tab) — обязателен!\n\n<b>Пример:</b>\n<code>age = 20</code>\n<code>if age >= 18:</code>\n<code>    print('Доступ разрешён')</code>\n<code>else:</code>\n<code>    print('Доступ запрещён')</code>\n\n<b>Операторы сравнения:</b>\n<code>==</code> — равно\n<code>!=</code> — не равно\n<code>></code>  — больше\n<code><</code>  — меньше\n<code>>=</code> — больше или равно\n<code><=</code> — меньше или равно\n\n== (сравнение) не равно = (присваивание)!",
+              "photo": null
+            },
+            "c2": {
+              "title": "elif — несколько условий",
+              "content": "Когда вариантов больше двух — используй elif.\n\n<b>Синтаксис:</b>\n<code>if условие1:</code>\n<code>    # код</code>\n<code>elif условие2:</code>\n<code>    # код</code>\n<code>elif условие3:</code>\n<code>    # код</code>\n<code>else:</code>\n<code>    # если ничего не подошло</code>\n\n<b>Пример — оценки:</b>\n<code>score = 75</code>\n<code>if score >= 90:</code>\n<code>    print('Отлично')</code>\n<code>elif score >= 75:</code>\n<code>    print('Хорошо')</code>\n<code>elif score >= 60:</code>\n<code>    print('Удовлетворительно')</code>\n<code>else:</code>\n<code>    print('Неудовлетворительно')</code>\n\nPython проверяет условия сверху вниз и останавливается на первом истинном.",
+              "photo": null
+            },
+            "c3": {
+              "title": "Логические операторы",
+              "content": "Позволяют объединять несколько условий.\n\n<b>and — И (оба должны быть True)</b>\n<code>age = 25</code>\n<code>has_ticket = True</code>\n<code>if age >= 18 and has_ticket:</code>\n<code>    print('Вход разрешён')</code>\n\n<b>or — ИЛИ (хотя бы одно True)</b>\n<code>day = 'суббота'</code>\n<code>if day == 'суббота' or day == 'воскресенье':</code>\n<code>    print('Выходной!')</code>\n\n<b>not — НЕ (инвертирует)</b>\n<code>is_raining = False</code>\n<code>if not is_raining:</code>\n<code>    print('Можно гулять')</code>\n\n<b>Таблица and:</b>\n<code>True and True</code>  # True\n<code>True and False</code> # False\n\n<b>Таблица or:</b>\n<code>True or False</code>  # True\n<code>False or False</code> # False",
+              "photo": null
+            },
+            "c4": {
+              "title": "Тернарный оператор",
+              "content": "Короткая запись условия в одну строку.\n\n<b>Синтаксис:</b>\n<code>значение_если_True if условие else значение_если_False</code>\n\n<b>Пример:</b>\n<code>age = 20</code>\n<code>status = 'взрослый' if age >= 18 else 'ребёнок'</code>\n<code>print(status)  # взрослый</code>\n\n<b>Вместо:</b>\n<code>if age >= 18:</code>\n<code>    status = 'взрослый'</code>\n<code>else:</code>\n<code>    status = 'ребёнок'</code>\n\n<b>Ещё пример:</b>\n<code>x = 10</code>\n<code>result = 'чётное' if x % 2 == 0 else 'нечётное'</code>\n\nИспользуй тернарный оператор для простых условий. Для сложных — обычный if/else читается лучше.",
+              "photo": null
+            }
+          }
+        },
+        "loops": {
+          "title": "4. Операторы цикла",
+          "subtopics": {
+            "l1": {
+              "title": "for — цикл по последовательности",
+              "content": "for перебирает элементы последовательности один за другим.\n\n<b>Синтаксис:</b>\n<code>for переменная in последовательность:</code>\n<code>    # код</code>\n\n<b>Перебор списка:</b>\n<code>fruits = ['яблоко', 'банан', 'груша']</code>\n<code>for fruit in fruits:</code>\n<code>    print(fruit)</code>\n\n<b>Перебор строки:</b>\n<code>for char in 'Python':</code>\n<code>    print(char)</code>\n# P, y, t, h, o, n\n\n<b>С функцией range():</b>\n<code>for i in range(5):</code>\n<code>    print(i)</code>\n# 0, 1, 2, 3, 4\n\n<code>for i in range(1, 6):</code>\n<code>    print(i)</code>\n# 1, 2, 3, 4, 5\n\n<code>for i in range(0, 10, 2):</code>\n<code>    print(i)</code>\n# 0, 2, 4, 6, 8 (шаг 2)",
+              "photo": null
+            },
+            "l2": {
+              "title": "while — цикл по условию",
+              "content": "while выполняет код пока условие истинно.\n\n<b>Синтаксис:</b>\n<code>while условие:</code>\n<code>    # код</code>\n\n<b>Пример:</b>\n<code>count = 0</code>\n<code>while count < 5:</code>\n<code>    print(count)</code>\n<code>    count += 1</code>\n# 0, 1, 2, 3, 4\n\n<b>Цикл с вводом пользователя:</b>\n<code>answer = ''</code>\n<code>while answer != 'выход':</code>\n<code>    answer = input('Введи команду: ')</code>\n<code>    print('Ты ввёл:', answer)</code>\n<code>print('До свидания!')</code>\n\nБесконечный цикл — частая ошибка:\n<code>while True:</code> — будет работать вечно!\nВсегда убедись, что условие когда-нибудь станет False.\n\nfor — когда знаешь сколько итераций.\nwhile — когда заранее не знаешь.",
+              "photo": null
+            },
+            "l3": {
+              "title": "break и continue",
+              "content": "Управляют ходом выполнения цикла.\n\n<b>break — немедленно выходит из цикла</b>\n<code>for i in range(10):</code>\n<code>    if i == 5:</code>\n<code>        break</code>\n<code>    print(i)</code>\n# 0, 1, 2, 3, 4 (остановились на 5)\n\n<b>continue — пропускает текущую итерацию</b>\n<code>for i in range(10):</code>\n<code>    if i % 2 == 0:</code>\n<code>        continue</code>\n<code>    print(i)</code>\n# 1, 3, 5, 7, 9 (только нечётные)\n\n<b>Практический пример — поиск:</b>\n<code>users = ['Анна', 'Иван', 'Мария']</code>\n<code>target = 'Иван'</code>\n<code>for user in users:</code>\n<code>    if user == target:</code>\n<code>        print('Найден!')</code>\n<code>        break</code>\n<code>else:</code>\n<code>    print('Не найден')</code>\n\nfor...else: блок else выполняется если цикл завершился без break.",
+              "photo": null
+            },
+            "l4": {
+              "title": "range() и enumerate()",
+              "content": "<b>range() — генерирует последовательность чисел</b>\n<code>range(stop)</code>\n<code>range(start, stop)</code>\n<code>range(start, stop, step)</code>\n\n<code>list(range(5))</code>         # [0, 1, 2, 3, 4]\n<code>list(range(2, 8))</code>      # [2, 3, 4, 5, 6, 7]\n<code>list(range(0, 10, 3))</code>  # [0, 3, 6, 9]\n<code>list(range(10, 0, -1))</code> # [10, 9, ..., 1]\n\n<b>enumerate() — добавляет индекс к элементу</b>\n<code>fruits = ['яблоко', 'банан', 'груша']</code>\n<code>for i, fruit in enumerate(fruits):</code>\n<code>    print(i, fruit)</code>\n# 0 яблоко\n# 1 банан\n# 2 груша\n\n<b>Начать с 1:</b>\n<code>for i, fruit in enumerate(fruits, start=1):</code>\n<code>    print(i, fruit)</code>\n# 1 яблоко, 2 банан, 3 груша",
+              "photo": null
+            }
+          }
+        },
+        "lists_basic": {
+          "title": "5. Основы списков",
+          "subtopics": {
+            "lb1": {
+              "title": "Создание списка и основы",
+              "content": "Список — упорядоченная изменяемая коллекция элементов.\n\n<b>Создание:</b>\n<code>nums = [1, 2, 3, 4, 5]</code>\n<code>names = ['Анна', 'Иван', 'Мария']</code>\n<code>mixed = [1, 'привет', True, 3.14]</code> — разные типы OK\n<code>empty = []</code> — пустой список\n\n<b>Длина списка:</b>\n<code>len(nums)</code> # 5\n\n<b>Проверка наличия:</b>\n<code>'Анна' in names</code>      # True\n<code>'Петя' not in names</code>  # True\n\n<b>Сложение списков:</b>\n<code>[1, 2] + [3, 4]</code> # [1, 2, 3, 4]\n\n<b>Умножение:</b>\n<code>[0] * 5</code> # [0, 0, 0, 0, 0]\n\nСписок может содержать другие списки:\n<code>matrix = [[1,2], [3,4], [5,6]]</code>",
+              "photo": null
+            },
+            "lb2": {
+              "title": "Индексация и срезы",
+              "content": "Каждый элемент имеет индекс — позицию в списке (начиная с 0).\n\n<code>fruits = ['яблоко', 'банан', 'груша', 'манго']</code>\n<code>#    индекс:  0         1        2        3</code>\n\n<b>Обращение по индексу:</b>\n<code>fruits[0]</code>  # яблоко\n<code>fruits[2]</code>  # груша\n<code>fruits[-1]</code> # манго (последний)\n<code>fruits[-2]</code> # груша (предпоследний)\n\n<b>Срезы [start:stop:step]:</b>\n<code>fruits[1:3]</code>  # ['банан', 'груша']\n<code>fruits[:2]</code>   # ['яблоко', 'банан']\n<code>fruits[2:]</code>   # ['груша', 'манго']\n<code>fruits[:]</code>    # копия всего списка\n<code>fruits[::2]</code>  # ['яблоко', 'груша'] (каждый 2-й)\n<code>fruits[::-1]</code> # разворот списка\n\n<b>Изменение элемента:</b>\n<code>fruits[0] = 'апельсин'</code>",
+              "photo": null
+            },
+            "lb3": {
+              "title": "Методы списка",
+              "content": "<b>Добавление:</b>\n<code>lst.append(x)</code>    — добавить x в конец\n<code>lst.insert(i, x)</code> — вставить x на позицию i\n<code>lst.extend([x,y])</code> — добавить несколько элементов\n\n<b>Удаление:</b>\n<code>lst.remove(x)</code> — удалить первое вхождение x\n<code>lst.pop()</code>     — удалить и вернуть последний\n<code>lst.pop(i)</code>    — удалить и вернуть по индексу\n<code>lst.clear()</code>   — очистить весь список\n\n<b>Поиск:</b>\n<code>lst.index(x)</code>  — индекс первого вхождения x\n<code>lst.count(x)</code>  — сколько раз x встречается\n\n<b>Сортировка:</b>\n<code>lst.sort()</code>             — по возрастанию\n<code>lst.sort(reverse=True)</code> — по убыванию\n<code>lst.reverse()</code>          — разворот\n\n<b>Копирование:</b>\n<code>new = lst.copy()</code>\nnew = lst — НЕ копия, это ссылка на тот же список!",
+              "photo": null
+            },
+            "lb4": {
+              "title": "Перебор списка",
+              "content": "<b>Простой перебор:</b>\n<code>fruits = ['яблоко', 'банан', 'груша']</code>\n<code>for fruit in fruits:</code>\n<code>    print(fruit)</code>\n\n<b>С индексом через enumerate():</b>\n<code>for i, fruit in enumerate(fruits):</code>\n<code>    print(f'{i}: {fruit}')</code>\n# 0: яблоко\n# 1: банан\n\n<b>Перебор с условием:</b>\n<code>nums = [1, 5, 2, 8, 3, 9]</code>\n<code>for n in nums:</code>\n<code>    if n > 5:</code>\n<code>        print(n)</code>\n# 8, 9\n\n<b>Накопление результата:</b>\n<code>nums = [1, 2, 3, 4, 5]</code>\n<code>total = 0</code>\n<code>for n in nums:</code>\n<code>    total += n</code>\n<code>print(total)  # 15</code>\n\nИли проще: <code>sum(nums)</code> -> 15",
+              "photo": null
+            }
+          }
+        },
+        "lists_advanced": {
+          "title": "6. Продвинутые операции со списками",
+          "subtopics": {
+            "la1": {
+              "title": "List Comprehension",
+              "content": "Мощный способ создать список в одну строку.\n\n<b>Синтаксис:</b>\n<code>[выражение for элемент in последовательность]</code>\n\n<b>Обычный способ:</b>\n<code>squares = []</code>\n<code>for i in range(1, 6):</code>\n<code>    squares.append(i ** 2)</code>\n# [1, 4, 9, 16, 25]\n\n<b>List comprehension:</b>\n<code>squares = [i ** 2 for i in range(1, 6)]</code>\n# [1, 4, 9, 16, 25]\n\n<b>С условием:</b>\n<code>evens = [i for i in range(20) if i % 2 == 0]</code>\n# [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]\n\n<b>Преобразование строк:</b>\n<code>words = ['hello', 'world', 'python']</code>\n<code>upper = [w.upper() for w in words]</code>\n# ['HELLO', 'WORLD', 'PYTHON']\n\nList comprehension быстрее обычного цикла. Но для сложных конструкций лучше обычный цикл — он читается понятнее.",
+              "photo": null
+            },
+            "la2": {
+              "title": "sorted(), reversed(), zip()",
+              "content": "<b>sorted() — сортировка без изменения оригинала</b>\n<code>nums = [3, 1, 4, 1, 5, 9]</code>\n<code>sorted(nums)</code>             # [1, 1, 3, 4, 5, 9]\n<code>sorted(nums, reverse=True)</code> # [9, 5, 4, 3, 1, 1]\n<code>nums</code> # [3, 1, 4, 1, 5, 9] (оригинал не изменился!)\n\n<b>Сортировка строк:</b>\n<code>words = ['банан', 'яблоко', 'груша']</code>\n<code>sorted(words)</code> # ['банан', 'груша', 'яблоко']\n\n<b>reversed() — разворот</b>\n<code>list(reversed([1,2,3,4]))</code> # [4, 3, 2, 1]\n\n<b>zip() — объединить два списка попарно</b>\n<code>names = ['Анна', 'Иван', 'Мария']</code>\n<code>scores = [85, 92, 78]</code>\n<code>for name, score in zip(names, scores):</code>\n<code>    print(f'{name}: {score}')</code>\n# Анна: 85\n# Иван: 92\n# Мария: 78",
+              "photo": null
+            },
+            "la3": {
+              "title": "Вложенные списки",
+              "content": "Список может содержать другие списки — вложенная структура.\n\n<b>Создание матрицы:</b>\n<code>matrix = [</code>\n<code>    [1, 2, 3],</code>\n<code>    [4, 5, 6],</code>\n<code>    [7, 8, 9]</code>\n<code>]</code>\n\n<b>Обращение к элементам:</b>\n<code>matrix[0]</code>    # [1, 2, 3] (первая строка)\n<code>matrix[0][0]</code> # 1\n<code>matrix[1][2]</code> # 6\n<code>matrix[2][2]</code> # 9\n\n<b>Перебор матрицы:</b>\n<code>for row in matrix:</code>\n<code>    for elem in row:</code>\n<code>        print(elem, end=' ')</code>\n<code>    print()</code>\n# 1 2 3\n# 4 5 6\n# 7 8 9\n\n<b>Создание через list comprehension:</b>\n<code>matrix = [[i*j for j in range(1,4)] for i in range(1,4)]</code>\n# [[1,2,3],[2,4,6],[3,6,9]]",
+              "photo": null
+            }
+          }
+        },
+        "strings": {
+          "title": "7. Работа со строками",
+          "subtopics": {
+            "s1": {
+              "title": "Основы строк",
+              "content": "Строка — последовательность символов. Неизменяемый тип данных.\n\n<b>Создание:</b>\n<code>s1 = 'одинарные кавычки'</code>\n<code>s2 = \"двойные кавычки\"</code>\n<code>s3 = '''многострочная строка'''\n\n<b>Длина строки:</b>\n</code>len('Python')<code> # 6\n\n<b>Индексация (как у списков):</b>\n</code>s = 'Python'<code>\n</code>s[0]<code>    # 'P'\n</code>s[-1]<code>   # 'n'\n</code>s[1:4]<code>  # 'yth'\n</code>s[::-1]<code> # 'nohtyP' (разворот)\n\n<b>Конкатенация:</b>\n</code>'Hello' + ' ' + 'World'<code> # 'Hello World'\n\n<b>Повторение:</b>\n</code>'abc' * 3<code> # 'abcabcabc'\n\nСтроки неизменяемы:\n</code>s = 'Python'<code>\n</code>s[0] = 'J'` # TypeError!",
+              "photo": null
+            },
+            "s2": {
+              "title": "Методы строк",
+              "content": "<b>Регистр:</b>\n<code>'hello'.upper()</code>       # 'HELLO'\n<code>'WORLD'.lower()</code>       # 'world'\n<code>'python'.capitalize()</code> # 'Python'\n<code>'hello world'.title()</code> # 'Hello World'\n\n<b>Поиск и замена:</b>\n<code>'hello world'.find('world')</code>  # 6 (индекс)\n<code>'hello world'.find('xyz')</code>    # -1 (не найдено)\n<code>'hello'.replace('l', 'r')</code>    # 'herro'\n<code>'hello world'.count('l')</code>     # 3\n\n<b>Проверки:</b>\n<code>'123'.isdigit()</code>          # True\n<code>'abc'.isalpha()</code>          # True\n<code>'Hello'.startswith('He')</code> # True\n<code>'Hello'.endswith('lo')</code>   # True\n\n<b>Очистка пробелов:</b>\n<code>'  hello  '.strip()</code>  # 'hello'\n<code>'  hello  '.lstrip()</code> # 'hello  '\n<code>'  hello  '.rstrip()</code> # '  hello'",
+              "photo": null
+            },
+            "s3": {
+              "title": "f-строки и форматирование",
+              "content": "f-строки — самый удобный способ вставить переменные в строку.\n\n<b>Ставь f перед кавычкой:</b>\n<code>name = 'Иван'</code>\n<code>age = 25</code>\n<code>print(f'Привет, {name}! Тебе {age} лет.')</code>\n# Привет, Иван! Тебе 25 лет.\n\n<b>Внутри {} можно писать выражения:</b>\n<code>price = 100</code>\n<code>f'Цена с НДС: {price * 1.2}'</code> # 'Цена с НДС: 120.0'\n<code>f'2 + 2 = {2 + 2}'</code>           # '2 + 2 = 4'\n\n<b>Форматирование чисел:</b>\n<code>pi = 3.14159</code>\n<code>f'{pi:.2f}'</code>    # '3.14' (2 знака после запятой)\n<code>f'{1000000:,}'</code> # '1,000,000' (разделитель тысяч)\n<code>f'{0.75:.0%}'</code>  # '75%' (в проценты)\n\n<b>Выравнивание:</b>\n<code>f\"{'left':<10}\"</code> # 'left      ' (по левому краю)\n<code>f\"{'right':>10}\"</code> # '     right' (по правому краю)",
+              "photo": null
+            },
+            "s4": {
+              "title": "split() и join()",
+              "content": "Две самые важные операции для работы с текстом.\n\n<b>split() — разбить строку на список</b>\n<code>'один два три'.split()</code>\n# ['один', 'два', 'три']\n\n<code>'a,b,c,d'.split(',')</code>\n# ['a', 'b', 'c', 'd']\n\n<code>'2024-01-15'.split('-')</code>\n# ['2024', '01', '15']\n\n<b>Ограничить количество разбиений:</b>\n<code>'a b c d'.split(' ', 2)</code>\n# ['a', 'b', 'c d']\n\n<b>join() — объединить список в строку</b>\n<code>words = ['Hello', 'World']</code>\n<code>' '.join(words)</code>  # 'Hello World'\n<code>'-'.join(words)</code>  # 'Hello-World'\n<code>''.join(words)</code>   # 'HelloWorld'\n\n<b>Практический пример:</b>\n<code>csv = 'Иван,25,Москва'</code>\n<code>name, age, city = csv.split(',')</code>\n<code>print(f'{name} из {city}, {age} лет')</code>",
+              "photo": null
+            }
+          }
+        },
+        "dynamic_typing": {
+          "title": "8. Динамическая типизация",
+          "subtopics": {
+            "dt1": {
+              "title": "Что такое динамическая типизация?",
+              "content": "В Python тип переменной определяется автоматически и может меняться.\n\n<b>В статических языках (Java, C++) нужно объявлять тип:</b>\n<code>int age = 25;</code> — Java\n<code>age = 'текст';</code> — ошибка!\n\n<b>В Python тип определяется сам:</b>\n<code>x = 42</code>      # x — это int\n<code>x = 'hello'</code> # теперь x — это str\n<code>x = [1,2,3]</code> # теперь x — это list\n\nВсё это работает без ошибок!\n\n<b>Переменная — это метка, которая указывает на объект:</b>\n<code>a = 5</code>\n<code>b = a    # b указывает на тот же объект 5</code>\n<code>a = 10   # a теперь указывает на 10</code>\n<code>print(b) # 5 (b не изменился!)</code>\n\nДинамическая типизация делает код быстрее писать, но требует внимательности.",
+              "photo": null
+            },
+            "dt2": {
+              "title": "isinstance() и проверка типов",
+              "content": "Функция isinstance() проверяет тип объекта.\n\n<b>Синтаксис:</b>\n<code>isinstance(объект, тип)</code> -> True или False\n\n<b>Примеры:</b>\n<code>isinstance(42, int)</code>      # True\n<code>isinstance(3.14, float)</code>  # True\n<code>isinstance('hello', str)</code> # True\n<code>isinstance([1,2], list)</code>  # True\n<code>isinstance(42, str)</code>      # False\n\n<b>Проверка нескольких типов сразу:</b>\n<code>isinstance(42, (int, float))</code>   # True\n<code>isinstance(3.14, (int, float))</code> # True\n\n<b>Практический пример:</b>\n<code>def double(x):</code>\n<code>    if isinstance(x, (int, float)):</code>\n<code>        return x * 2</code>\n<code>    elif isinstance(x, str):</code>\n<code>        return x * 2</code>\n<code>    else:</code>\n<code>        return None</code>\n\n<code>double(5)</code>     # 10\n<code>double('abc')</code> # 'abcabc'",
+              "photo": null
+            },
+            "dt3": {
+              "title": "Duck Typing",
+              "content": "«Если это ходит как утка и крякает как утка — это утка.»\n\nPython не проверяет точный тип — он проверяет умеет ли объект делать нужное действие.\n\n<b>Пример:</b>\n<code>def print_length(obj):</code>\n<code>    print(len(obj))</code>\n\n<code>print_length('hello')</code>  # 5\n<code>print_length([1,2,3])</code>  # 3\n<code>print_length({'a':1})</code>  # 1\n\nФункция не проверяет тип — она просто вызывает len(). Подходит всё, у чего есть длина!\n\n<b>Ещё пример:</b>\n<code>def add(a, b):</code>\n<code>    return a + b</code>\n\n<code>add(2, 3)</code>         # 5\n<code>add('foo', 'bar')</code> # 'foobar'\n<code>add([1,2], [3,4])</code> # [1, 2, 3, 4]\n\nDuck typing — философия Python: пиши гибкий код, не привязанный к конкретному типу.",
+              "photo": null
+            }
+          }
+        },
+        "functions": {
+          "title": "9. Основы функций",
+          "subtopics": {
+            "f1": {
+              "title": "Создание и вызов функции",
+              "content": "Функция — блок кода с именем, который можно вызывать много раз.\n\n<b>Синтаксис:</b>\n<code>def имя_функции():</code>\n<code>    # тело функции</code>\n\n<b>Создание:</b>\n<code>def greet():</code>\n<code>    print('Привет!')</code>\n\n<b>Вызов:</b>\n<code>greet()</code> # Привет!\n<code>greet()</code> # Привет!\n<code>greet()</code> # Привет!\n\n<b>Зачем нужны функции:</b>\n• Не повторять один и тот же код\n• Разбить большую задачу на маленькие\n• Легче тестировать и исправлять\n\nФункцию нужно сначала создать (def), потом вызвать. Вызов до определения — ошибка!",
+              "photo": null
+            },
+            "f2": {
+              "title": "Аргументы и параметры",
+              "content": "Параметры — переменные внутри функции.\nАргументы — значения, которые передаёшь при вызове.\n\n<code>def greet(name):</code>\n<code>    print(f'Привет, {name}!')</code>\n\n<code>greet('Иван')</code> # Привет, Иван!\n\n<b>Несколько параметров:</b>\n<code>def add(a, b):</code>\n<code>    print(a + b)</code>\n\n<code>add(3, 5)</code> # 8\n\n<b>Аргументы по умолчанию:</b>\n<code>def greet(name, greeting='Привет'):</code>\n<code>    print(f'{greeting}, {name}!')</code>\n\n<code>greet('Иван')</code>               # Привет, Иван!\n<code>greet('Иван', 'Добрый день')</code> # Добрый день, Иван!\n\nПараметры с дефолтным значением всегда пишутся после обычных параметров.",
+              "photo": null
+            },
+            "f3": {
+              "title": "return — возврат значения",
+              "content": "Функция может не только выполнять действия, но и возвращать результат.\n\n<b>Без return — функция возвращает None:</b>\n<code>def add(a, b):</code>\n<code>    print(a + b)</code> — выводит, но не возвращает\n\n<code>result = add(3, 5)</code> # печатает 8\n<code>print(result)</code>      # None\n\n<b>С return:</b>\n<code>def add(a, b):</code>\n<code>    return a + b</code>\n\n<code>result = add(3, 5)</code>\n<code>print(result)</code> # 8\n<code>print(add(10, 20) * 2)</code> # 60\n\n<b>Вернуть несколько значений:</b>\n<code>def min_max(lst):</code>\n<code>    return min(lst), max(lst)</code>\n\n<code>lo, hi = min_max([3, 1, 4, 1, 5, 9])</code>\n<code>print(lo, hi)</code> # 1 9\n\nПосле return код в функции не выполняется!",
+              "photo": null
+            },
+            "f4": {
+              "title": "Область видимости переменных",
+              "content": "Переменные внутри функции локальны — не видны снаружи.\n\n<b>Локальная переменная:</b>\n<code>def my_func():</code>\n<code>    x = 10</code>\n<code>    print(x)</code>\n\n<code>my_func()</code> # 10\n<code>print(x)</code>  # ошибка! x не существует снаружи\n\n<b>Глобальная переменная:</b>\n<code>name = 'Иван'</code>\n\n<code>def greet():</code>\n<code>    print(name)</code> — читать глобальную OK\n\n<code>greet()</code> # Иван\n\n<b>Изменить глобальную изнутри — нужен global:</b>\n<code>count = 0</code>\n\n<code>def increment():</code>\n<code>    global count</code>\n<code>    count += 1</code>\n\n<code>increment()</code>\n<code>increment()</code>\n<code>print(count)</code> # 2\n\nИспользовать global — плохая практика. Лучше передавать через аргументы и возвращать через return.",
+              "photo": null
+            }
+          }
+        },
+        "tuples": {
+          "title": "10. Кортежи",
+          "subtopics": {
+            "t1": {
+              "title": "Что такое кортеж и зачем он нужен",
+              "content": "Кортеж — как список, но неизменяемый. Создаётся с круглыми скобками.\n\n<b>Создание:</b>\n<code>point = (10, 20)</code>\n<code>colors = ('red', 'green', 'blue')</code>\n<code>single = (42,)</code> — одиночный элемент: обязательна запятая!\n<code>empty = ()</code>\n\n<b>Кортеж без скобок:</b>\n<code>coords = 10, 20, 30</code>\n\n<b>Зачем кортеж, если есть список?</b>\n• Быстрее списка\n• Занимает меньше памяти\n• Защищает данные от случайного изменения\n• Можно использовать как ключ словаря (список нельзя!)\n\n<b>Типичные примеры:</b>\n<code>DAYS = ('Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс')</code>\n<code>RGB = (255, 128, 0)</code>\n<code>def get_coords(): return (55.75, 37.61)</code>",
+              "photo": null
+            },
+            "t2": {
+              "title": "Операции с кортежами",
+              "content": "Кортеж поддерживает большинство операций списка, кроме изменения.\n\n<b>Индексация и срезы:</b>\n<code>t = (10, 20, 30, 40, 50)</code>\n<code>t[0]</code>    # 10\n<code>t[-1]</code>   # 50\n<code>t[1:3]</code>  # (20, 30)\n<code>t[::-1]</code> # (50, 40, 30, 20, 10)\n\n<b>Длина, подсчёт, поиск:</b>\n<code>len(t)</code>       # 5\n<code>t.count(20)</code>  # 1\n<code>t.index(30)</code>  # 2\n\n<b>Проверка наличия:</b>\n<code>20 in t</code> # True\n\n<b>Сложение и умножение:</b>\n<code>(1,2) + (3,4)</code> # (1, 2, 3, 4)\n<code>(0,) * 3</code>      # (0, 0, 0)\n\nНельзя:\n<code>t[0] = 99</code>   # TypeError!\n<code>t.append(6)</code> # AttributeError!",
+              "photo": null
+            },
+            "t3": {
+              "title": "Распаковка кортежей",
+              "content": "Распаковка — присвоить элементы кортежа нескольким переменным.\n\n<b>Простая распаковка:</b>\n<code>point = (10, 20)</code>\n<code>x, y = point</code>\n<code>print(x)  # 10</code>\n<code>print(y)  # 20</code>\n\n<b>Пример с функцией:</b>\n<code>def get_user():</code>\n<code>    return ('Иван', 25, 'Москва')</code>\n\n<code>name, age, city = get_user()</code>\n\n<b>Расширенная распаковка со звёздочкой:</b>\n<code>first, *rest = (1, 2, 3, 4, 5)</code>\n<code>print(first)  # 1</code>\n<code>print(rest)   # [2, 3, 4, 5]</code>\n\n<code>*init, last = (1, 2, 3, 4, 5)</code>\n<code>print(init)   # [1, 2, 3, 4]</code>\n<code>print(last)   # 5</code>\n\n<b>Обмен значениями:</b>\n<code>a = 5</code>\n<code>b = 10</code>\n<code>a, b = b, a</code>\n<code>print(a, b)  # 10 5</code>",
+              "photo": null
+            }
+          }
+        },
+        "sets": {
+          "title": "11. Множества",
+          "subtopics": {
+            "se1": {
+              "title": "Что такое множество?",
+              "content": "Множество — коллекция уникальных неупорядоченных элементов.\n\n<b>Создание:</b>\n<code>s = {1, 2, 3, 4, 5}</code>\n<code>s = {'яблоко', 'банан', 'груша'}</code>\n<code>s = set([1, 2, 2, 3, 3, 3])</code> # {1, 2, 3}\n<code>empty = set()</code> — не {}, это создаёт словарь!\n\n<b>Главные особенности:</b>\n• Только уникальные элементы\n• Нет порядка (нет индексов!)\n• Очень быстрая проверка in\n\n<b>Удаление дубликатов из списка:</b>\n<code>nums = [1, 2, 2, 3, 3, 3, 4]</code>\n<code>unique = list(set(nums))</code> # [1, 2, 3, 4]\n\n<b>Методы:</b>\n<code>s.add(6)</code>      # добавить элемент\n<code>s.remove(3)</code>   # удалить (ошибка если нет)\n<code>s.discard(99)</code> # удалить (без ошибки)\n<code>s.pop()</code>       # удалить случайный элемент\n<code>s.clear()</code>     # очистить",
+              "photo": null
+            },
+            "se2": {
+              "title": "Операции над множествами",
+              "content": "Множества поддерживают математические операции.\n\n<code>a = {1, 2, 3, 4, 5}</code>\n<code>b = {3, 4, 5, 6, 7}</code>\n\n<b>Объединение — все элементы обоих:</b>\n<code>a | b</code> или <code>a.union(b)</code>\n# {1, 2, 3, 4, 5, 6, 7}\n\n<b>Пересечение — только общие:</b>\n<code>a & b</code> или <code>a.intersection(b)</code>\n# {3, 4, 5}\n\n<b>Разность — есть в a, нет в b:</b>\n<code>a - b</code> или <code>a.difference(b)</code>\n# {1, 2}\n\n<b>Симметрическая разность — есть только в одном:</b>\n<code>a ^ b</code> или <code>a.symmetric_difference(b)</code>\n# {1, 2, 6, 7}\n\n<b>Проверки:</b>\n<code>{1,2}.issubset({1,2,3})</code>   # True (подмножество)\n<code>{1,2,3}.issuperset({1,2})</code> # True (надмножество)\n<code>{1,2}.isdisjoint({3,4})</code>   # True (нет общих)",
+              "photo": null
+            }
+          }
+        },
+        "dicts": {
+          "title": "12. Словари",
+          "subtopics": {
+            "d1": {
+              "title": "Создание словаря и основы",
+              "content": "Словарь — коллекция пар ключ: значение. Ключи уникальны.\n\n<b>Создание:</b>\n<code>person = {'name': 'Иван', 'age': 25, 'city': 'Москва'}</code>\n<code>empty = {}</code>\n<code>d = dict(name='Иван', age=25)</code>\n\n<b>Получение значения:</b>\n<code>person['name']</code>  # 'Иван'\n<code>person['phone']</code> # KeyError! ключа нет\n\n<b>Безопасное получение — get():</b>\n<code>person.get('name')</code>          # 'Иван'\n<code>person.get('phone')</code>         # None (не ошибка!)\n<code>person.get('phone', 'N/A')</code>  # 'N/A'\n\n<b>Добавление и изменение:</b>\n<code>person['phone'] = '+7999'</code> # добавить\n<code>person['age'] = 26</code>        # изменить\n\n<b>Удаление:</b>\n<code>del person['city']</code>\n<code>person.pop('age')</code> # удалить и вернуть значение",
+              "photo": null
+            },
+            "d2": {
+              "title": "Методы словаря",
+              "content": "<b>Ключи, значения, пары:</b>\n<code>d = {'a': 1, 'b': 2, 'c': 3}</code>\n<code>d.keys()</code>   # dict_keys(['a', 'b', 'c'])\n<code>d.values()</code> # dict_values([1, 2, 3])\n<code>d.items()</code>  # dict_items([('a',1), ('b',2), ('c',3)])\n\n<b>Перебор словаря:</b>\n<code>for key, value in d.items():</code>\n<code>    print(f'{key}: {value}')</code>\n\n<b>Проверка наличия ключа:</b>\n<code>'a' in d</code>  # True\n<code>'z' in d</code>  # False\n\n<b>Объединение словарей:</b>\n<code>d1 = {'a': 1}</code>\n<code>d2 = {'b': 2}</code>\n<code>merged = {*<b>d1, </b>*d2}</code> # {'a':1, 'b':2}\n\n<b>update():</b>\n<code>d.update({'d': 4, 'e': 5})</code>\n\n<b>Копирование:</b>\n<code>copy = d.copy()</code>",
+              "photo": null
+            },
+            "d3": {
+              "title": "Словарь в задачах",
+              "content": "<b>Подсчёт частоты элементов:</b>\n<code>words = ['яблоко', 'банан', 'яблоко', 'груша', 'банан', 'яблоко']</code>\n<code>count = {}</code>\n<code>for word in words:</code>\n<code>    count[word] = count.get(word, 0) + 1</code>\n<code>print(count)</code>\n# {'яблоко': 3, 'банан': 2, 'груша': 1}\n\n<b>Группировка по признаку:</b>\n<code>students = [('Анна',5), ('Иван',4), ('Мария',5)]</code>\n<code>by_grade = {}</code>\n<code>for name, grade in students:</code>\n<code>    if grade not in by_grade:</code>\n<code>        by_grade[grade] = []</code>\n<code>    by_grade[grade].append(name)</code>\n# {5: ['Анна','Мария'], 4: ['Иван']}\n\n<b>Dict comprehension:</b>\n<code>squares = {x: x**2 for x in range(1, 6)}</code>\n# {1:1, 2:4, 3:9, 4:16, 5:25}",
+              "photo": null
+            }
+          }
+        },
+        "interview": {
+          "title": "13. Задачи с собеседований",
+          "subtopics": {
+            "i1": {
+              "title": "FizzBuzz",
+              "content": "<b>Задача:</b> Напечатай числа от 1 до 100.\nКратные 3 — Fizz, кратные 5 — Buzz, кратные 15 — FizzBuzz.\n\n<b>Решение:</b>\n<code>for i in range(1, 101):</code>\n<code>    if i % 15 == 0:</code>\n<code>        print('FizzBuzz')</code>\n<code>    elif i % 3 == 0:</code>\n<code>        print('Fizz')</code>\n<code>    elif i % 5 == 0:</code>\n<code>        print('Buzz')</code>\n<code>    else:</code>\n<code>        print(i)</code>\n\nПроверка на 15 должна быть первой, иначе FizzBuzz не сработает!\n\n<b>Краткое решение:</b>\n<code>for i in range(1, 101):</code>\n<code>    result = ''</code>\n<code>    if i % 3 == 0: result += 'Fizz'</code>\n<code>    if i % 5 == 0: result += 'Buzz'</code>\n<code>    print(result or i)</code>",
+              "photo": null
+            },
+            "i2": {
+              "title": "Разворот строки и палиндром",
+              "content": "<b>Задача 1: Развернуть строку</b>\n<code>s = 'Python'</code>\n<code>reversed_s = s[::-1]</code>\n<code>print(reversed_s)</code> # 'nohtyP'\n\n<b>Задача 2: Является ли строка палиндромом?</b>\nПалиндром — читается одинаково в обе стороны.\n'kayak', 'level', 'racecar'\n\n<code>def is_palindrome(s):</code>\n<code>    s = s.lower().replace(' ', '')</code>\n<code>    return s == s[::-1]</code>\n\n<code>is_palindrome('racecar')</code> # True\n<code>is_palindrome('hello')</code>   # False\n\n<b>Разворот без среза:</b>\n<code>def reverse_str(s):</code>\n<code>    result = ''</code>\n<code>    for char in s:</code>\n<code>        result = char + result</code>\n<code>    return result</code>",
+              "photo": null
+            },
+            "i3": {
+              "title": "Поиск дубликатов",
+              "content": "<b>Задача: Найти дубликаты в списке</b>\n<code>nums = [1, 2, 3, 2, 4, 3, 5]</code>\n\n<b>Через множество:</b>\n<code>seen = set()</code>\n<code>duplicates = set()</code>\n<code>for n in nums:</code>\n<code>    if n in seen:</code>\n<code>        duplicates.add(n)</code>\n<code>    seen.add(n)</code>\n<code>print(duplicates)</code> # {2, 3}\n\n<b>Задача: Найти первый неповторяющийся элемент</b>\n<code>s = 'aabccd'</code>\n<code>for char in s:</code>\n<code>    if s.count(char) == 1:</code>\n<code>        print(char)</code> # 'b'\n<code>        break</code>\n\n<b>Удалить дубликаты, сохранив порядок:</b>\n<code>nums = [3, 1, 2, 1, 3, 4]</code>\n<code>seen = set()</code>\n<code>result = []</code>\n<code>for x in nums:</code>\n<code>    if x not in seen:</code>\n<code>        result.append(x)</code>\n<code>        seen.add(x)</code>\n# [3, 1, 2, 4]",
+              "photo": null
+            },
+            "i4": {
+              "title": "Анаграммы и работа со словами",
+              "content": "<b>Задача: Являются ли строки анаграммами?</b>\nАнаграмма — одни и те же буквы в другом порядке.\n'listen' и 'silent' — анаграммы.\n\n<b>Через sorted():</b>\n<code>def is_anagram(s1, s2):</code>\n<code>    return sorted(s1.lower()) == sorted(s2.lower())</code>\n\n<code>is_anagram('listen', 'silent')</code> # True\n<code>is_anagram('hello', 'world')</code>   # False\n\n<b>Задача: Подсчёт слов в тексте</b>\n<code>text = 'apple banana apple cherry banana apple'</code>\n<code>words = text.split()</code>\n<code>freq = {}</code>\n<code>for w in words:</code>\n<code>    freq[w] = freq.get(w, 0) + 1</code>\n# {'apple':3, 'banana':2, 'cherry':1}\n\n<code>most_common = max(freq, key=freq.get)</code>\n# 'apple'",
+              "photo": null
+            }
+          }
+        }
+      }
+    },
+    "pandas_series": {
+      "title": "🐼 Pandas — Series",
+      "topics": {
+        "ps1": {
+          "title": "1. Создание Series из кода",
+          "subtopics": {
+            "ps1_1": {
+              "title": "Что такое Series?",
+              "content": "Series — это одномерный массив с метками (индексами). Представь столбец Excel с подписями строк.\n\n<code>import pandas as pd</code>\n\n<b>Из списка:</b>\n<code>s = pd.Series([10, 20, 30, 40])</code>\n<code>print(s)</code>\n# 0    10\n# 1    20\n# 2    30\n# 3    40\n# dtype: int64\n\nСлева — индекс (0,1,2...), справа — значения.\n\n<b>Со своими индексами:</b>\n<code>s = pd.Series([10, 20, 30], index=['a', 'b', 'c'])</code>\n# a    10\n# b    20\n# c    30\n\n<b>Из словаря:</b>\n<code>data = {'Москва': 12, 'СПб': 5, 'Казань': 1.2}</code>\n<code>s = pd.Series(data)</code>\n# Москва    12.0\n# СПб        5.0\n# Казань     1.2",
+              "photo": null
+            },
+            "ps1_2": {
+              "title": "Атрибуты Series",
+              "content": "Полезные атрибуты для изучения Series.\n\n<code>s = pd.Series([10, 20, 30, 40, 50], name='продажи')</code>\n\n<code>s.values</code>  # array([10, 20, 30, 40, 50]) — значения\n<code>s.index</code>   # RangeIndex(start=0, stop=5) — индексы\n<code>s.dtype</code>   # dtype('int64') — тип данных\n<code>s.name</code>    # 'продажи' — имя Series\n<code>s.shape</code>   # (5,) — форма\n<code>len(s)</code>    # 5 — длина\n\n<b>Быстрая статистика:</b>\n<code>s.describe()</code>\n# count     5.0\n# mean     30.0\n# std      15.8\n# min      10.0\n# max      50.0\n\n<code>s.sum()</code>   # 150\n<code>s.mean()</code>  # 30.0\n<code>s.max()</code>   # 50\n<code>s.min()</code>   # 10",
+              "photo": null
+            }
+          }
+        },
+        "ps2": {
+          "title": "2. Фильтрация Series",
+          "subtopics": {
+            "ps2_1": {
+              "title": "Фильтрация по условию",
+              "content": "Фильтрация возвращает только те элементы, которые удовлетворяют условию.\n\n<code>s = pd.Series([15, 42, 8, 99, 23, 5], index=['a','b','c','d','e','f'])</code>\n\n<b>Условие создаёт маску (True/False):</b>\n<code>mask = s > 20</code>\n# a    False\n# b     True\n# c    False\n# d     True\n# e     True\n# f    False\n\n<b>Применяем маску:</b>\n<code>s[s > 20]</code>\n# b    42\n# d    99\n# e    23\n\n<b>Несколько условий:</b>\n<code>s[(s > 10) & (s < 50)]</code>\n# a    15\n# b    42\n# e    23\n\n<b>Значения из списка:</b>\n<code>s[s.isin([15, 99, 5])]</code>\n# a    15\n# d    99\n# f     5",
+              "photo": null
+            }
+          }
+        },
+        "ps3": {
+          "title": "3. Чтение и запись Series",
+          "subtopics": {
+            "ps3_1": {
+              "title": "Обращение к элементам",
+              "content": "Получение элементов по индексу или позиции.\n\n<code>s = pd.Series([10, 20, 30, 40], index=['a', 'b', 'c', 'd'])</code>\n\n<b>По метке индекса:</b>\n<code>s['a']</code>      # 10\n<code>s['c']</code>      # 30\n\n<b>По позиции (как в списке):</b>\n<code>s.iloc[0]</code>   # 10 (первый)\n<code>s.iloc[-1]</code>  # 40 (последний)\n<code>s.iloc[1:3]</code> # Series с b и c\n\n<b>По метке (явный способ):</b>\n<code>s.loc['b']</code>       # 20\n<code>s.loc['b':'d']</code>   # b, c, d (включительно!)\n\n<b>Несколько меток:</b>\n<code>s[['a', 'c']]</code>\n# a    10\n# c    30\n\nloc — по меткам (включает конец диапазона)\niloc — по позициям (не включает конец)",
+              "photo": null
+            }
+          }
+        },
+        "ps4": {
+          "title": "4. Добавление элемента",
+          "subtopics": {
+            "ps4_1": {
+              "title": "Добавление в Series",
+              "content": "Series — неизменяемый по размеру, но можно создать новый с добавленным элементом.\n\n<code>s = pd.Series([10, 20, 30], index=['a', 'b', 'c'])</code>\n\n<b>Добавить один элемент:</b>\n<code>s['d'] = 40</code>\n# a    10\n# b    20\n# c    30\n# d    40\n\n<b>Объединить два Series через pd.concat:</b>\n<code>new_item = pd.Series([50], index=['e'])</code>\n<code>s = pd.concat([s, new_item])</code>\n# a    10\n# b    20\n# c    30\n# d    40\n# e    50\n\n<b>Добавить несколько элементов:</b>\n<code>extra = pd.Series({'f': 60, 'g': 70})</code>\n<code>s = pd.concat([s, extra])</code>\n\nКаждый раз создаётся новый объект — это норма для Pandas.",
+              "photo": null
+            }
+          }
+        },
+        "ps5": {
+          "title": "5. Удаление элементов",
+          "subtopics": {
+            "ps5_1": {
+              "title": "Удаление из Series",
+              "content": "Удаление элементов по меткам индекса.\n\n<code>s = pd.Series([10, 20, 30, 40, 50], index=['a','b','c','d','e'])</code>\n\n<b>Удалить один элемент:</b>\n<code>s2 = s.drop('b')</code>\n# a    10\n# c    30\n# d    40\n# e    50\n\n<b>Удалить несколько:</b>\n<code>s2 = s.drop(['a', 'c'])</code>\n# b    20\n# d    40\n# e    50\n\n<b>Удалить на месте (inplace):</b>\n<code>s.drop('b', inplace=True)</code>\n\n<b>Удалить по условию:</b>\n<code>s2 = s[s > 20]</code>\n# Оставляем только те, что > 20\n# c    30\n# d    40\n# e    50\n\nПо умолчанию drop не меняет оригинал — нужно присвоить результат или использовать inplace=True.",
+              "photo": null
+            }
+          }
+        },
+        "ps6": {
+          "title": "6. For..in для элементов",
+          "subtopics": {
+            "ps6_1": {
+              "title": "Перебор Series",
+              "content": "Series поддерживает перебор через цикл for.\n\n<code>s = pd.Series([10, 20, 30], index=['a', 'b', 'c'])</code>\n\n<b>Перебор значений:</b>\n<code>for value in s:</code>\n<code>    print(value)</code>\n# 10\n# 20\n# 30\n\n<b>Перебор индексов и значений:</b>\n<code>for idx, value in s.items():</code>\n<code>    print(f'{idx}: {value}')</code>\n# a: 10\n# b: 20\n# c: 30\n\n<b>Перебор только индексов:</b>\n<code>for idx in s.index:</code>\n<code>    print(idx)</code>\n# a, b, c\n\n<b>Практический пример:</b>\n<code>sales = pd.Series({'Янв':100, 'Фев':150, 'Мар':120})</code>\n<code>for month, amount in sales.items():</code>\n<code>    if amount > 110:</code>\n<code>        print(f'{month} — хороший месяц: {amount}')</code>\n# Фев — хороший месяц: 150\n# Мар — хороший месяц: 120",
+              "photo": null
+            }
+          }
+        },
+        "ps7": {
+          "title": "7. Конкатенация Series",
+          "subtopics": {
+            "ps7_1": {
+              "title": "Объединение двух Series",
+              "content": "pd.concat() объединяет несколько Series в один.\n\n<code>s1 = pd.Series([1, 2, 3], index=['a', 'b', 'c'])</code>\n<code>s2 = pd.Series([4, 5, 6], index=['d', 'e', 'f'])</code>\n\n<b>Простая конкатенация:</b>\n<code>result = pd.concat([s1, s2])</code>\n# a    1\n# b    2\n# c    3\n# d    4\n# e    5\n# f    6\n\n<b>Сброс индекса:</b>\n<code>result = pd.concat([s1, s2], ignore_index=True)</code>\n# 0    1\n# 1    2\n# ...  \n# 5    6\n\n<b>Конкатенация с одинаковыми индексами:</b>\n<code>s3 = pd.Series([10, 20], index=['a', 'b'])</code>\n<code>s4 = pd.Series([30, 40], index=['a', 'b'])</code>\n<code>pd.concat([s3, s4])</code>\n# a    10\n# b    20\n# a    30  <- дублируются!\n# b    40\n\nЕсли индексы одинаковые — используй ignore_index=True.",
+              "photo": null
+            }
+          }
+        },
+        "ps8": {
+          "title": "8. Применение функции к элементам",
+          "subtopics": {
+            "ps8_1": {
+              "title": "apply() и map()",
+              "content": "Применение функции к каждому элементу Series.\n\n<code>s = pd.Series([1, 4, 9, 16, 25])</code>\n\n<b>apply() — применить функцию:</b>\n<code>import math</code>\n<code>s.apply(math.sqrt)</code>\n# 0    1.0\n# 1    2.0\n# 2    3.0\n# 3    4.0\n# 4    5.0\n\n<b>С лямбда-функцией:</b>\n<code>s.apply(lambda x: x ** 2)</code>\n# 0      1\n# 1     16\n# 2     81\n\n<code>prices = pd.Series([100, 200, 300])</code>\n<code>prices.apply(lambda x: x * 1.2)</code>\n# цены с НДС 20%\n\n<b>map() — замена значений:</b>\n<code>s = pd.Series(['м', 'ж', 'м', 'м', 'ж'])</code>\n<code>s.map({'м': 'мужской', 'ж': 'женский'})</code>\n# 0    мужской\n# 1    женский\n# ...\n\nmap() — для замены значений по словарю.\napply() — для применения любой функции.",
+              "photo": null
+            }
+          }
+        }
+      }
+    },
+    "pandas_df": {
+      "title": "🐼 Pandas — DataFrame",
+      "topics": {
+        "pd1": {
+          "title": "1. Создание и загрузка DataFrame",
+          "subtopics": {
+            "pd1_1": {
+              "title": "Что такое DataFrame?",
+              "content": "DataFrame — двумерная таблица с метками строк и столбцов. Представь таблицу Excel в Python.\n\n<code>import pandas as pd</code>\n\n<b>Из словаря:</b>\n<code>df = pd.DataFrame({\n    'name': ['Анна', 'Иван', 'Мария'],\n    'age': [25, 30, 22],\n    'city': ['Москва', 'СПб', 'Казань']\n})</code>\n\n<b>Из списка словарей:</b>\n<code>df = pd.DataFrame([\n    {'name': 'Анна', 'age': 25},\n    {'name': 'Иван', 'age': 30}\n])</code>\n\n<b>Из CSV файла:</b>\n<code>df = pd.read_csv('data.csv')</code>\n<code>df = pd.read_csv('data.csv', sep=';')</code> — если разделитель ;\n\n<b>Из Excel:</b>\n<code>df = pd.read_excel('data.xlsx', sheet_name='Лист1')</code>",
+              "photo": null
+            },
+            "pd1_2": {
+              "title": "Основные атрибуты DataFrame",
+              "content": "Первые команды при знакомстве с новым датасетом.\n\n<code>df.shape</code>    # (3, 3) — строки и столбцы\n<code>df.columns</code>  # Index(['name', 'age', 'city'])\n<code>df.dtypes</code>   # типы данных каждого столбца\n<code>df.index</code>    # RangeIndex(start=0, stop=3)\n<code>len(df)</code>     # 3 — количество строк\n\n<b>Просмотр данных:</b>\n<code>df.head()</code>    # первые 5 строк\n<code>df.head(10)</code>  # первые 10 строк\n<code>df.tail()</code>    # последние 5 строк\n<code>df.sample(3)</code> # 3 случайные строки\n\n<b>Общая информация:</b>\n<code>df.info()</code>     # типы, количество непустых значений\n<code>df.describe()</code> # статистика по числовым столбцам\n\n<code>df.describe()</code> покажет: count, mean, std, min, max — отличный способ быстро понять данные.",
+              "photo": null
+            }
+          }
+        },
+        "pd2": {
+          "title": "2. Вычисления как в Excel",
+          "subtopics": {
+            "pd2_1": {
+              "title": "Операции со столбцами",
+              "content": "Pandas позволяет делать вычисления сразу над всем столбцом — как формулы в Excel.\n\n<code>df = pd.DataFrame({\n    'price': [100, 200, 300],\n    'qty': [2, 5, 1]\n})</code>\n\n<b>Умножение столбцов:</b>\n<code>df['revenue'] = df['price'] * df['qty']</code>\n# 200, 1000, 300\n\n<b>Добавить НДС:</b>\n<code>df['price_vat'] = df['price'] * 1.2</code>\n\n<b>Сложение столбцов:</b>\n<code>df['total'] = df['price'] + df['qty']</code>\n\n<b>Агрегация:</b>\n<code>df['price'].sum()</code>    # сумма\n<code>df['price'].mean()</code>   # среднее\n<code>df['price'].max()</code>    # максимум\n<code>df['price'].min()</code>    # минимум\n<code>df['price'].median()</code> # медиана\n<code>df['price'].std()</code>    # стандартное отклонение\n\n<b>Накопленная сумма:</b>\n<code>df['price'].cumsum()</code> # [100, 300, 600]",
+              "photo": null
+            }
+          }
+        },
+        "pd3": {
+          "title": "3. Фильтрация",
+          "subtopics": {
+            "pd3_1": {
+              "title": "Фильтрация строк",
+              "content": "Выборка строк по условию — как WHERE в SQL.\n\n<code>df = pd.DataFrame({\n    'name': ['Анна', 'Иван', 'Мария', 'Петя'],\n    'age': [25, 30, 22, 35],\n    'city': ['Москва', 'СПб', 'Москва', 'Казань']\n})</code>\n\n<b>Простое условие:</b>\n<code>df[df['age'] > 25]</code>\n# Иван (30), Петя (35)\n\n<b>Равенство:</b>\n<code>df[df['city'] == 'Москва']</code>\n# Анна, Мария\n\n<b>Несколько условий (И):</b>\n<code>df[(df['age'] > 20) & (df['city'] == 'Москва')]</code>\n\n<b>Несколько условий (ИЛИ):</b>\n<code>df[(df['city'] == 'Москва') | (df['city'] == 'СПб')]</code>\n\n<b>Из списка значений:</b>\n<code>df[df['city'].isin(['Москва', 'СПб'])]</code>\n\n<b>Исключить:</b>\n<code>df[~df['city'].isin(['Казань'])]</code>\n\n~ — инверсия (НЕ)",
+              "photo": null
+            },
+            "pd3_2": {
+              "title": "loc и iloc",
+              "content": "Два способа выбрать строки и столбцы одновременно.\n\n<code>df = pd.DataFrame({\n    'name': ['Анна', 'Иван', 'Мария'],\n    'age': [25, 30, 22],\n    'city': ['Москва', 'СПб', 'Казань']\n})</code>\n\n<b>loc — по меткам:</b>\n<code>df.loc[0]</code>              # первая строка (все столбцы)\n<code>df.loc[0, 'name']</code>     # 'Анна'\n<code>df.loc[0:1, 'name':'age']</code> # строки 0-1, столбцы name и age\n<code>df.loc[df['age'] > 25, 'name']</code> # имена тех, кому > 25\n\n<b>iloc — по позициям (числам):</b>\n<code>df.iloc[0]</code>       # первая строка\n<code>df.iloc[0, 0]</code>    # строка 0, столбец 0 -> 'Анна'\n<code>df.iloc[:2, :2]</code>  # первые 2 строки и 2 столбца\n\nloc — метки, включает конец\niloc — позиции, не включает конец",
+              "photo": null
+            }
+          }
+        },
+        "pd4": {
+          "title": "4. Сортировка",
+          "subtopics": {
+            "pd4_1": {
+              "title": "sort_values()",
+              "content": "Сортировка DataFrame по одному или нескольким столбцам.\n\n<code>df = pd.DataFrame({\n    'name': ['Анна', 'Иван', 'Мария', 'Петя'],\n    'age': [25, 30, 22, 30],\n    'salary': [80000, 120000, 95000, 110000]\n})</code>\n\n<b>По одному столбцу (по возрастанию):</b>\n<code>df.sort_values('age')</code>\n# Мария (22), Анна (25), Иван (30), Петя (30)\n\n<b>По убыванию:</b>\n<code>df.sort_values('salary', ascending=False)</code>\n# Иван, Петя, Мария, Анна\n\n<b>По нескольким столбцам:</b>\n<code>df.sort_values(['age', 'salary'], ascending=[True, False])</code>\n# Сначала по возрасту, при равном — по убыванию зарплаты\n\n<b>Сброс индекса после сортировки:</b>\n<code>df.sort_values('age').reset_index(drop=True)</code>\n\nПо умолчанию sort_values не меняет оригинал.\nДобавь inplace=True или присвой результат.",
+              "photo": null
+            }
+          }
+        },
+        "pd5": {
+          "title": "5. Применение функций к DataFrame",
+          "subtopics": {
+            "pd5_1": {
+              "title": "apply() для DataFrame",
+              "content": "apply() применяет функцию к столбцу или строке.\n\n<code>df = pd.DataFrame({\n    'price': [100, 200, 300],\n    'discount': [0.1, 0.2, 0.15]\n})</code>\n\n<b>Применить к столбцу:</b>\n<code>df['price'].apply(lambda x: x * 1.2)</code>\n# цены с надбавкой 20%\n\n<b>Применить к нескольким столбцам (axis=1):</b>\n<code>df['final_price'] = df.apply(\n    lambda row: row['price'] * (1 - row['discount']),\n    axis=1\n)</code>\n# Итоговая цена с учётом скидки\n\n<b>Своя функция:</b>\n<code>def category(price):</code>\n<code>    if price < 150: return 'дешёвый'</code>\n<code>    elif price < 250: return 'средний'</code>\n<code>    else: return 'дорогой'</code>\n\n<code>df['category'] = df['price'].apply(category)</code>\n\naxis=0 — применить к каждому столбцу\naxis=1 — применить к каждой строке",
+              "photo": null
+            }
+          }
+        },
+        "pd6": {
+          "title": "6. Работа со строками",
+          "subtopics": {
+            "pd6_1": {
+              "title": "Строковые методы через .str",
+              "content": "Pandas предоставляет удобный доступ к строковым методам через .str\n\n<code>df = pd.DataFrame({\n    'name': ['  Анна ', 'ИВАН', 'мария'],\n    'email': ['anna@mail.ru', 'ivan@gmail.com', 'maria@mail.ru']\n})</code>\n\n<b>Приведение регистра:</b>\n<code>df['name'].str.lower()</code>  # анна, иван, мария\n<code>df['name'].str.upper()</code>  # АННА, ИВАН, МАРИЯ\n<code>df['name'].str.strip()</code>  # убрать пробелы\n<code>df['name'].str.capitalize()</code> # Анна, Иван, Мария\n\n<b>Поиск и проверки:</b>\n<code>df['email'].str.contains('mail.ru')</code> # True, False, True\n<code>df['email'].str.startswith('anna')</code>  # True, False, False\n\n<b>Разбиение:</b>\n<code>df['email'].str.split('@')</code>\n# ['anna', 'mail.ru'], ['ivan', 'gmail.com']...\n\n<b>Извлечение домена:</b>\n<code>df['domain'] = df['email'].str.split('@').str[1]</code>\n# mail.ru, gmail.com, mail.ru\n\n<b>Замена:</b>\n<code>df['name'].str.replace('  ', '')</code>",
+              "photo": null
+            }
+          }
+        },
+        "pd7": {
+          "title": "7. Заполнение пропущенных данных",
+          "subtopics": {
+            "pd7_1": {
+              "title": "Обнаружение пропусков",
+              "content": "NaN (Not a Number) — пропущенное значение в Pandas.\n\n<code>import numpy as np</code>\n<code>df = pd.DataFrame({\n    'name': ['Анна', 'Иван', None, 'Петя'],\n    'age': [25, np.nan, 22, 30],\n    'city': ['Москва', 'СПб', 'Казань', None]\n})</code>\n\n<b>Найти пропуски:</b>\n<code>df.isnull()</code>        # таблица True/False\n<code>df.isnull().sum()</code>  # количество NaN в каждом столбце\n<code>df.isnull().sum().sum()</code> # всего NaN в таблице\n\n<b>Строки с пропусками:</b>\n<code>df[df.isnull().any(axis=1)]</code>\n\n<b>Процент пропусков:</b>\n<code>df.isnull().mean() * 100</code>",
+              "photo": null
+            },
+            "pd7_2": {
+              "title": "Удаление и заполнение NaN",
+              "content": "<b>Удалить строки с пропусками:</b>\n<code>df.dropna()</code>          # удалить строки где есть хоть один NaN\n<code>df.dropna(subset=['age'])</code> # только где пусто в age\n<code>df.dropna(how='all')</code> # только если ВСЕ значения NaN\n\n<b>Заполнить пропуски:</b>\n<code>df.fillna(0)</code>           # заменить все NaN на 0\n<code>df['age'].fillna(df['age'].mean())</code> # заменить на среднее\n\n<code>df.fillna({'age': 0, 'city': 'Неизвестно'})</code>\n# разные значения для разных столбцов\n\n<b>Заполнить предыдущим значением:</b>\n<code>df.fillna(method='ffill')</code> # forward fill\n<code>df.fillna(method='bfill')</code> # backward fill\n\nВсегда сначала анализируй пропуски (isnull().sum()), потом решай — удалять или заполнять. Удаление строк теряет данные, заполнение средним — искажает статистику.",
+              "photo": null
+            }
+          }
+        },
+        "pd8": {
+          "title": "8. Соединения таблиц — Joins",
+          "subtopics": {
+            "pd8_1": {
+              "title": "merge() — JOIN как в SQL",
+              "content": "merge() объединяет два DataFrame по общему столбцу — аналог JOIN в SQL.\n\n<code>users = pd.DataFrame({\n    'id': [1, 2, 3, 4],\n    'name': ['Анна', 'Иван', 'Мария', 'Петя']\n})</code>\n\n<code>orders = pd.DataFrame({\n    'user_id': [1, 2, 1, 3],\n    'product': ['ноутбук', 'телефон', 'мышь', 'клавиатура']\n})</code>\n\n<b>INNER JOIN — только совпадения:</b>\n<code>pd.merge(users, orders, left_on='id', right_on='user_id')</code>\n# Анна (ноутбук), Анна (мышь), Иван (телефон), Мария (клавиатура)\n\n<b>LEFT JOIN — все из левой + совпадения из правой:</b>\n<code>pd.merge(users, orders, left_on='id', right_on='user_id', how='left')</code>\n# Петя тоже попадёт, но с NaN в product\n\n<b>RIGHT JOIN и OUTER JOIN:</b>\n<code>how='right'</code> — все из правой\n<code>how='outer'</code> — все из обеих таблиц",
+              "photo": null
+            }
+          }
+        },
+        "pd9": {
+          "title": "9. Конкатенация таблиц",
+          "subtopics": {
+            "pd9_1": {
+              "title": "pd.concat() — склейка таблиц",
+              "content": "concat() склеивает несколько DataFrame вертикально или горизонтально.\n\n<code>df1 = pd.DataFrame({'name': ['Анна', 'Иван'], 'age': [25, 30]})</code>\n<code>df2 = pd.DataFrame({'name': ['Мария', 'Петя'], 'age': [22, 35]})</code>\n\n<b>Вертикально (добавить строки):</b>\n<code>pd.concat([df1, df2])</code>\n# 4 строки: Анна, Иван, Мария, Петя\n\n<b>Сброс индекса:</b>\n<code>pd.concat([df1, df2], ignore_index=True)</code>\n# Индексы: 0, 1, 2, 3 (без повторов)\n\n<b>Горизонтально (добавить столбцы):</b>\n<code>df3 = pd.DataFrame({'city': ['Москва', 'СПб']})</code>\n<code>pd.concat([df1, df3], axis=1)</code>\n# name | age | city\n\n<b>Конкатенация с ключами:</b>\n<code>pd.concat([df1, df2], keys=['группа1', 'группа2'])</code>\n# Создаёт мультииндекс\n\nmerge() — соединение по ключу (JOIN)\nconcat() — простая склейка таблиц",
+              "photo": null
+            }
+          }
+        },
+        "pd10": {
+          "title": "10. Группировка",
+          "subtopics": {
+            "pd10_1": {
+              "title": "groupby() — группировка данных",
+              "content": "groupby() группирует строки и применяет агрегатные функции — как GROUP BY в SQL.\n\n<code>df = pd.DataFrame({\n    'city': ['Москва','СПб','Москва','Казань','СПб'],\n    'sales': [100, 200, 150, 80, 120],\n    'orders': [5, 8, 6, 3, 5]\n})</code>\n\n<b>Сумма продаж по городам:</b>\n<code>df.groupby('city')['sales'].sum()</code>\n# Казань     80\n# Москва    250\n# СПб       320\n\n<b>Среднее:</b>\n<code>df.groupby('city')['sales'].mean()</code>\n\n<b>Несколько функций сразу через agg():</b>\n<code>df.groupby('city').agg({\n    'sales': ['sum', 'mean', 'max'],\n    'orders': 'sum'\n})</code>\n\n<b>Группировка по нескольким столбцам:</b>\n<code>df.groupby(['city', 'category'])['sales'].sum()</code>\n\n<b>Сбросить индекс:</b>\n<code>df.groupby('city')['sales'].sum().reset_index()</code>",
+              "photo": null
+            }
+          }
+        },
+        "pd11": {
+          "title": "11. Сводные таблицы",
+          "subtopics": {
+            "pd11_1": {
+              "title": "pivot_table() — сводная таблица",
+              "content": "pivot_table() — мощный аналог сводных таблиц Excel.\n\n<code>df = pd.DataFrame({\n    'city': ['Москва','Москва','СПб','СПб','Казань'],\n    'category': ['еда','электроника','еда','электроника','еда'],\n    'sales': [100, 500, 80, 400, 60]\n})</code>\n\n<b>Сводная таблица: города x категории:</b>\n<code>pd.pivot_table(\n    df,\n    values='sales',\n    index='city',\n    columns='category',\n    aggfunc='sum'\n)</code>\n# category    еда  электроника\n# city\n# Казань       60          NaN\n# Москва      100          500\n# СПб          80          400\n\n<b>Заполнить NaN нулями:</b>\n<code>pd.pivot_table(..., fill_value=0)</code>\n\n<b>Несколько функций агрегации:</b>\n<code>pd.pivot_table(..., aggfunc=['sum', 'mean'])</code>\n\n<b>Добавить итоги:</b>\n<code>pd.pivot_table(..., margins=True, margins_name='Итого')</code>",
+              "photo": null
+            }
+          },
+          "sql": {
+            "title": "🗄️ SQL",
+            "topics": {
+              "sql1": {
+                "title": "1. Оператор SELECT",
+                "subtopics": {
+                  "sql1_1": {
+                    "title": "SELECT — основы выборки",
+                    "content": "SELECT — самая главная команда SQL. Она извлекает данные из таблицы.\n\n*Базовый синтаксис:*\n`SELECT столбец1, столбец2 FROM таблица;`\n\n*Выбрать все столбцы:*\n`SELECT * FROM employees;`\n\n*Выбрать конкретные столбцы:*\n`SELECT name, age, salary FROM employees;`\n\n*Псевдонимы столбцов (AS):*\n`SELECT name AS имя, salary AS зарплата`\n`FROM employees;`\n\n*Убрать дубликаты — DISTINCT:*\n`SELECT DISTINCT city FROM employees;`\n# Вернёт уникальные города\n\n*Ограничить количество строк — LIMIT:*\n`SELECT * FROM employees LIMIT 10;`\n# Только первые 10 строк\n\n*Порядок выполнения запроса:*\nFROM -> WHERE -> SELECT -> ORDER BY -> LIMIT",
+                    "photo": null
+                  },
+                  "sql1_2": {
+                    "title": "WHERE — фильтрация строк",
+                    "content": "WHERE фильтрует строки по условию — как if в Python.\n\n*Синтаксис:*\n`SELECT * FROM employees WHERE условие;`\n\n*Примеры:*\n`SELECT * FROM employees WHERE age > 30;`\n`SELECT * FROM employees WHERE city = 'Москва';`\n`SELECT * FROM employees WHERE salary != 50000;`\n\n*Операторы сравнения:*\n`=`   — равно\n`!=`  — не равно\n`>`   — больше\n`<`   — меньше\n`>=`  — больше или равно\n`<=`  — меньше или равно\n\n*Логические операторы:*\n`SELECT * FROM employees`\n`WHERE age > 25 AND city = 'Москва';`\n\n`SELECT * FROM employees`\n`WHERE city = 'Москва' OR city = 'СПб';`\n\n*Отрицание:*\n`SELECT * FROM employees WHERE NOT city = 'Казань';`",
+                    "photo": null
+                  },
+                  "sql1_3": {
+                    "title": "ORDER BY, BETWEEN, IN, LIKE",
+                    "content": "*ORDER BY — сортировка результата:*\n`SELECT * FROM employees ORDER BY salary;`\n# По возрастанию (ASC — по умолчанию)\n\n`SELECT * FROM employees ORDER BY salary DESC;`\n# По убыванию\n\n`SELECT * FROM employees ORDER BY city ASC, salary DESC;`\n# Сначала по городу, потом по зарплате\n\n*BETWEEN — диапазон значений:*\n`SELECT * FROM employees WHERE salary BETWEEN 50000 AND 100000;`\n# Включительно оба конца!\n\n*IN — список значений:*\n`SELECT * FROM employees WHERE city IN ('Москва', 'СПб', 'Казань');`\n# Вместо трёх OR\n\n`SELECT * FROM employees WHERE city NOT IN ('Казань');`\n\n*LIKE — поиск по шаблону:*\n`SELECT * FROM employees WHERE name LIKE 'А%';`\n# Имена начинающиеся на А\n\n`SELECT * FROM employees WHERE name LIKE '%ов';`\n# Имена заканчивающиеся на ов\n\n`SELECT * FROM employees WHERE name LIKE '%ван%';`\n# Содержит ван\n\n% — любое количество символов\n_ — ровно один символ",
+                    "photo": null
+                  },
+                  "sql1_4": {
+                    "title": "Агрегатные функции",
+                    "content": "Агрегатные функции считают итоговые значения по группе строк.\n\n*Основные функции:*\n`COUNT(*)` — количество строк\n`COUNT(column)` — количество непустых значений\n`SUM(column)` — сумма\n`AVG(column)` — среднее значение\n`MAX(column)` — максимум\n`MIN(column)` — минимум\n\n*Примеры:*\n`SELECT COUNT(*) FROM employees;`\n# Сколько всего сотрудников\n\n`SELECT AVG(salary) FROM employees;`\n# Средняя зарплата\n\n`SELECT MAX(salary), MIN(salary) FROM employees;`\n# Максимальная и минимальная зарплата\n\n`SELECT SUM(salary) FROM employees WHERE city = 'Москва';`\n# Суммарная зарплата москвичей\n\n*COUNT(*) vs COUNT(column):*\n`COUNT(*)` — считает все строки включая NULL\n`COUNT(column)` — пропускает NULL\n\n`SELECT COUNT(*), COUNT(phone) FROM employees;`\n# COUNT(*) = 100, COUNT(phone) = 73 (у 27 нет телефона)",
+                    "photo": null
+                  }
+                }
+              },
+              "sql2": {
+                "title": "2. Группировка — GROUP BY",
+                "subtopics": {
+                  "sql2_1": {
+                    "title": "GROUP BY — основы",
+                    "content": "GROUP BY группирует строки с одинаковыми значениями и применяет агрегатную функцию к каждой группе.\n\n*Синтаксис:*\n`SELECT столбец, ФУНКЦИЯ(столбец)`\n`FROM таблица`\n`GROUP BY столбец;`\n\n*Пример — количество сотрудников по городам:*\n`SELECT city, COUNT(*) AS employees_count`\n`FROM employees`\n`GROUP BY city;`\n# Москва  — 45\n# СПб     — 30\n# Казань  — 15\n\n*Средняя зарплата по отделам:*\n`SELECT department, AVG(salary) AS avg_salary`\n`FROM employees`\n`GROUP BY department;`\n\n*Группировка по нескольким столбцам:*\n`SELECT city, department, COUNT(*)`\n`FROM employees`\n`GROUP BY city, department;`\n\nВажно: в SELECT можно писать только те столбцы, которые есть в GROUP BY, или агрегатные функции!",
+                    "photo": null
+                  },
+                  "sql2_2": {
+                    "title": "HAVING — фильтрация групп",
+                    "content": "HAVING фильтрует результат после группировки — WHERE нельзя использовать с агрегатными функциями.\n\n*Правило:*\n`WHERE` — фильтрует строки ДО группировки\n`HAVING` — фильтрует группы ПОСЛЕ группировки\n\n*Пример — города где больше 10 сотрудников:*\n`SELECT city, COUNT(*) AS cnt`\n`FROM employees`\n`GROUP BY city`\n`HAVING COUNT(*) > 10;`\n\n*Отделы со средней зарплатой выше 80000:*\n`SELECT department, AVG(salary) AS avg_sal`\n`FROM employees`\n`GROUP BY department`\n`HAVING AVG(salary) > 80000;`\n\n*WHERE и HAVING вместе:*\n`SELECT department, AVG(salary)`\n`FROM employees`\n`WHERE city = 'Москва'`\n`GROUP BY department`\n`HAVING AVG(salary) > 70000;`\n# Сначала берём только москвичей (WHERE),\n# потом группируем и фильтруем группы (HAVING)\n\n*Порядок выполнения:*\nFROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY",
+                    "photo": null
+                  }
+                }
+              },
+              "sql3": {
+                "title": "3. Основы работы с датами",
+                "subtopics": {
+                  "sql3_1": {
+                    "title": "Типы дат и основные функции",
+                    "content": "SQL работает с датами через специальные типы данных и функции.\n\n*Типы дат:*\n`DATE` — только дата: '2024-01-15'\n`TIME` — только время: '14:30:00'\n`DATETIME` — дата и время: '2024-01-15 14:30:00'\n`TIMESTAMP` — метка времени (с часовым поясом)\n\n*Текущая дата и время:*\n`SELECT NOW();`          — текущие дата и время\n`SELECT CURDATE();`      — текущая дата\n`SELECT CURTIME();`      — текущее время\n`SELECT CURRENT_DATE;`   — аналог CURDATE()\n\n*Извлечение части даты:*\n`SELECT YEAR(order_date) FROM orders;`\n`SELECT MONTH(order_date) FROM orders;`\n`SELECT DAY(order_date) FROM orders;`\n`SELECT HOUR(created_at) FROM logs;`\n`SELECT DAYOFWEEK(order_date) FROM orders;`\n# 1 = воскресенье, 2 = понедельник ... 7 = суббота",
+                    "photo": null
+                  },
+                  "sql3_2": {
+                    "title": "Фильтрация и вычисления с датами",
+                    "content": "*Фильтрация по дате:*\n`SELECT * FROM orders`\n`WHERE order_date = '2024-01-15';`\n\n`SELECT * FROM orders`\n`WHERE order_date BETWEEN '2024-01-01' AND '2024-03-31';`\n\n`SELECT * FROM orders`\n`WHERE YEAR(order_date) = 2024 AND MONTH(order_date) = 1;`\n\n*Разница между датами — DATEDIFF:*\n`SELECT DATEDIFF('2024-12-31', '2024-01-01');`\n# 365 (разница в днях)\n\n`SELECT name, DATEDIFF(NOW(), hire_date) AS days_worked`\n`FROM employees;`\n\n*Прибавить/отнять время — DATE_ADD:*\n`SELECT DATE_ADD('2024-01-01', INTERVAL 30 DAY);`\n# 2024-01-31\n\n`SELECT DATE_ADD(NOW(), INTERVAL 1 MONTH);`\n# +1 месяц от сегодня\n\n`SELECT DATE_SUB(NOW(), INTERVAL 7 DAY);`\n# -7 дней от сегодня\n\n*Форматирование даты — DATE_FORMAT:*\n`SELECT DATE_FORMAT(order_date, '%d.%m.%Y') FROM orders;`\n# 15.01.2024",
+                    "photo": null
+                  }
+                }
+              },
+              "sql4": {
+                "title": "4. Соединения таблиц",
+                "subtopics": {
+                  "sql4_1": {
+                    "title": "Что такое JOIN и зачем он нужен",
+                    "content": "JOIN объединяет строки из двух или более таблиц по условию.\n\n*Пример: две таблицы*\n\nТаблица users:\n`id | name`\n`1  | Анна`\n`2  | Иван`\n`3  | Мария`\n\nТаблица orders:\n`id | user_id | product`\n`1  | 1       | ноутбук`\n`2  | 2       | телефон`\n`3  | 1       | мышь`\n\n*Без JOIN — нельзя узнать кто что заказал.*\nС JOIN — можно соединить по user_id = id.\n\n*Виды JOIN:*\n`INNER JOIN` — только совпадающие строки\n`LEFT JOIN`  — все из левой + совпадения из правой\n`RIGHT JOIN` — все из правой + совпадения из левой\n`FULL JOIN`  — все строки из обеих таблиц\n\nСинтаксис:\n`SELECT поля`\n`FROM таблица1`\n`JOIN таблица2 ON таблица1.ключ = таблица2.ключ;`",
+                    "photo": null
+                  },
+                  "sql4_2": {
+                    "title": "INNER JOIN и LEFT JOIN",
+                    "content": "*INNER JOIN — только совпадения:*\n`SELECT u.name, o.product`\n`FROM users u`\n`INNER JOIN orders o ON u.id = o.user_id;`\n# Анна — ноутбук\n# Анна — мышь\n# Иван — телефон\n# Мария не попадёт — у неё нет заказов!\n\n*LEFT JOIN — все из левой таблицы:*\n`SELECT u.name, o.product`\n`FROM users u`\n`LEFT JOIN orders o ON u.id = o.user_id;`\n# Анна  — ноутбук\n# Анна  — мышь\n# Иван  — телефон\n# Мария — NULL (нет заказов, но попадает!)\n\n*Найти пользователей БЕЗ заказов:*\n`SELECT u.name`\n`FROM users u`\n`LEFT JOIN orders o ON u.id = o.user_id`\n`WHERE o.user_id IS NULL;`\n# Мария\n\n*Псевдонимы таблиц:*\n`FROM users u` — u это сокращение для users\nЭто удобно когда имена таблиц длинные.",
+                    "photo": null
+                  },
+                  "sql4_3": {
+                    "title": "Несколько JOIN и RIGHT/FULL JOIN",
+                    "content": "*Несколько JOIN в одном запросе:*\n`SELECT u.name, o.product, p.price`\n`FROM users u`\n`JOIN orders o ON u.id = o.user_id`\n`JOIN products p ON o.product_id = p.id;`\n\n*RIGHT JOIN — все из правой таблицы:*\n`SELECT u.name, o.product`\n`FROM users u`\n`RIGHT JOIN orders o ON u.id = o.user_id;`\n# Все заказы попадают, даже если пользователь удалён\n\n*FULL JOIN — все строки из обеих:*\n`SELECT u.name, o.product`\n`FROM users u`\n`FULL OUTER JOIN orders o ON u.id = o.user_id;`\n# Все пользователи + все заказы\n# NULL там где нет совпадений\n\n*Самосоединение (SELF JOIN) — таблица с собой:*\n`SELECT e.name, m.name AS manager`\n`FROM employees e`\n`LEFT JOIN employees m ON e.manager_id = m.id;`\n# Каждый сотрудник + его менеджер из той же таблицы\n\nПодсказка:\nINNER — строгое пересечение\nLEFT — приоритет левой таблицы\nRIGHT — приоритет правой таблицы\nFULL — все данные из обеих",
+                    "photo": null
+                  }
+                }
+              },
+              "sql5": {
+                "title": "5. Подзапросы в SQL",
+                "subtopics": {
+                  "sql5_1": {
+                    "title": "Что такое подзапрос?",
+                    "content": "Подзапрос — это SELECT внутри другого SELECT. Позволяет использовать результат одного запроса в другом.\n\n*Синтаксис:*\n`SELECT * FROM таблица`\n`WHERE столбец = (SELECT ... FROM ...);`\n\n*Пример — сотрудники с зарплатой выше средней:*\n`SELECT name, salary`\n`FROM employees`\n`WHERE salary > (SELECT AVG(salary) FROM employees);`\n\nВнутренний запрос выполняется первым:\n1. `SELECT AVG(salary) FROM employees` -> 75000\n2. `SELECT name, salary FROM employees WHERE salary > 75000`\n\n*Подзапрос в FROM:*\n`SELECT dept, avg_sal`\n`FROM (`\n`    SELECT department AS dept, AVG(salary) AS avg_sal`\n`    FROM employees`\n`    GROUP BY department`\n`) AS dept_stats`\n`WHERE avg_sal > 80000;`\n\nПодзапрос в FROM должен иметь псевдоним (AS dept_stats)!",
+                    "photo": null
+                  },
+                  "sql5_2": {
+                    "title": "IN, EXISTS, коррелированные подзапросы",
+                    "content": "*Подзапрос с IN:*\n`SELECT name FROM employees`\n`WHERE department_id IN (`\n`    SELECT id FROM departments WHERE city = 'Москва'`\n`);`\n# Сотрудники московских отделов\n\n*EXISTS — проверяет существование строк:*\n`SELECT name FROM users u`\n`WHERE EXISTS (`\n`    SELECT 1 FROM orders o WHERE o.user_id = u.id`\n`);`\n# Пользователи у которых есть хоть один заказ\n\n`NOT EXISTS` — у которых нет заказов:\n`WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)`\n\n*Коррелированный подзапрос — ссылается на внешний:*\n`SELECT name, salary,`\n`    (SELECT AVG(salary) FROM employees e2`\n`     WHERE e2.department = e1.department) AS dept_avg`\n`FROM employees e1;`\n# Для каждого сотрудника — его зарплата и средняя по отделу\n\nIN — когда нужен список значений\nEXISTS — когда нужно проверить наличие\nEXISTS часто быстрее IN на больших данных",
+                    "photo": null
+                  }
+                }
+              },
+              "sql6": {
+                "title": "6. Оконные функции",
+                "subtopics": {
+                  "sql6_1": {
+                    "title": "Что такое оконные функции?",
+                    "content": "Оконные функции выполняют вычисление по набору строк (окну), не сворачивая их в одну — в отличие от GROUP BY.\n\n*Синтаксис:*\n`ФУНКЦИЯ() OVER (PARTITION BY столбец ORDER BY столбец)`\n\n*Пример — зарплата + средняя по отделу в одной строке:*\n\nС GROUP BY — теряем детали:\n`SELECT department, AVG(salary) FROM employees GROUP BY department;`\n# Только отдел и среднее, без имён!\n\nС оконной функцией — сохраняем все строки:\n`SELECT name, department, salary,`\n`    AVG(salary) OVER (PARTITION BY department) AS dept_avg`\n`FROM employees;`\n# Анна | IT | 90000 | 85000\n# Иван | IT | 80000 | 85000\n# Мария| HR | 70000 | 70000\n\nPARTITION BY — разбивает на группы (как GROUP BY)\nNO PARTITION — считает по всей таблице\n\n*Без PARTITION — среднее по всей таблице:*\n`AVG(salary) OVER ()` — скобки обязательны!",
+                    "photo": null
+                  },
+                  "sql6_2": {
+                    "title": "ROW_NUMBER, RANK, DENSE_RANK",
+                    "content": "Функции ранжирования — нумеруют или ранжируют строки внутри группы.\n\n*ROW_NUMBER — порядковый номер:*\n`SELECT name, salary,`\n`    ROW_NUMBER() OVER (ORDER BY salary DESC) AS row_num`\n`FROM employees;`\n# 1, 2, 3, 4... (всегда уникальные номера)\n\n*RANK — ранг с пропусками:*\n`SELECT name, salary,`\n`    RANK() OVER (ORDER BY salary DESC) AS rank`\n`FROM employees;`\n# При одинаковой зарплате: 1, 2, 2, 4 (пропуск!)\n\n*DENSE_RANK — ранг без пропусков:*\n`SELECT name, salary,`\n`    DENSE_RANK() OVER (ORDER BY salary DESC) AS drank`\n`FROM employees;`\n# При одинаковой зарплате: 1, 2, 2, 3 (без пропуска)\n\n*Топ-1 сотрудник по зарплате в каждом отделе:*\n`SELECT * FROM (`\n`    SELECT name, department, salary,`\n`        ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn`\n`    FROM employees`\n`) t`\n`WHERE rn = 1;`",
+                    "photo": null
+                  },
+                  "sql6_3": {
+                    "title": "LAG, LEAD и накопительные функции",
+                    "content": "*LAG — значение предыдущей строки:*\n`SELECT month, revenue,`\n`    LAG(revenue) OVER (ORDER BY month) AS prev_revenue`\n`FROM monthly_sales;`\n# Январь: 100 | NULL\n# Февраль: 150 | 100\n# Март: 120 | 150\n\n*Изменение по сравнению с прошлым месяцем:*\n`SELECT month, revenue,`\n`    revenue - LAG(revenue) OVER (ORDER BY month) AS diff`\n`FROM monthly_sales;`\n\n*LEAD — значение следующей строки:*\n`SELECT month, revenue,`\n`    LEAD(revenue) OVER (ORDER BY month) AS next_revenue`\n`FROM monthly_sales;`\n\n*SUM() OVER — накопительная сумма:*\n`SELECT month, revenue,`\n`    SUM(revenue) OVER (ORDER BY month) AS cumulative`\n`FROM monthly_sales;`\n# Январь: 100 | 100\n# Февраль: 150 | 250\n# Март: 120 | 370\n\n*Скользящее среднее за 3 месяца:*\n`AVG(revenue) OVER (ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)`",
+                    "photo": null
+                  }
+                }
+              },
+              "sql7": {
+                "title": "7. Задачи с собеседований",
+                "subtopics": {
+                  "sql7_1": {
+                    "title": "Задачи на SELECT и фильтрацию",
+                    "content": "*Задача 1: Найти дубликаты в таблице*\n`SELECT email, COUNT(*) AS cnt`\n`FROM users`\n`GROUP BY email`\n`HAVING COUNT(*) > 1;`\n\n*Задача 2: Второй по величине оклад*\n`SELECT MAX(salary)`\n`FROM employees`\n`WHERE salary < (SELECT MAX(salary) FROM employees);`\n\nИли через LIMIT:\n`SELECT DISTINCT salary`\n`FROM employees`\n`ORDER BY salary DESC`\n`LIMIT 1 OFFSET 1;`\n\n*Задача 3: Удалить дубликаты, оставив одну запись*\n`DELETE FROM users`\n`WHERE id NOT IN (`\n`    SELECT MIN(id) FROM users GROUP BY email`\n`);`\n\n*Задача 4: Пользователи, не сделавшие ни одного заказа*\n`SELECT u.name`\n`FROM users u`\n`LEFT JOIN orders o ON u.id = o.user_id`\n`WHERE o.id IS NULL;`",
+                    "photo": null
+                  },
+                  "sql7_2": {
+                    "title": "Задачи на GROUP BY и JOIN",
+                    "content": "*Задача 1: Топ-3 города по количеству заказов*\n`SELECT city, COUNT(*) AS orders_cnt`\n`FROM users u`\n`JOIN orders o ON u.id = o.user_id`\n`GROUP BY city`\n`ORDER BY orders_cnt DESC`\n`LIMIT 3;`\n\n*Задача 2: Процент от общей суммы*\n`SELECT department, SUM(salary) AS dept_sum,`\n`    ROUND(SUM(salary) * 100.0 / (SELECT SUM(salary) FROM employees), 2) AS pct`\n`FROM employees`\n`GROUP BY department;`\n\n*Задача 3: Сотрудники с зарплатой выше средней по своему отделу*\n`SELECT name, department, salary`\n`FROM employees e`\n`WHERE salary > (`\n`    SELECT AVG(salary)`\n`    FROM employees`\n`    WHERE department = e.department`\n`);`\n\n*Задача 4: Ежемесячный прирост продаж*\n`SELECT month, revenue,`\n`    ROUND((revenue - LAG(revenue) OVER (ORDER BY month)) * 100.0 /`\n`        LAG(revenue) OVER (ORDER BY month), 2) AS growth_pct`\n`FROM monthly_sales;`",
+                    "photo": null
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sql": {
+      "title": "🗄️ SQL",
+      "topics": {
+        "sql1": {
+          "title": "1. Оператор SELECT",
+          "subtopics": {
+            "sql1_1": {
+              "title": "SELECT — основы выборки",
+              "content": "SELECT — самая главная команда SQL. Она извлекает данные из таблицы.\n\n<b>Базовый синтаксис:</b>\n<code>SELECT столбец1, столбец2 FROM таблица;</code>\n\n<b>Выбрать все столбцы:</b>\n<code>SELECT * FROM employees;</code>\n\n<b>Выбрать конкретные столбцы:</b>\n<code>SELECT name, age, salary FROM employees;</code>\n\n<b>Псевдонимы столбцов (AS):</b>\n<code>SELECT name AS имя, salary AS зарплата</code>\n<code>FROM employees;</code>\n\n<b>Убрать дубликаты — DISTINCT:</b>\n<code>SELECT DISTINCT city FROM employees;</code>\n# Вернёт уникальные города\n\n<b>Ограничить количество строк — LIMIT:</b>\n<code>SELECT * FROM employees LIMIT 10;</code>\n# Только первые 10 строк\n\n<b>Порядок выполнения запроса:</b>\nFROM -> WHERE -> SELECT -> ORDER BY -> LIMIT",
+              "photo": null
+            },
+            "sql1_2": {
+              "title": "WHERE — фильтрация строк",
+              "content": "WHERE фильтрует строки по условию — как if в Python.\n\n<b>Синтаксис:</b>\n<code>SELECT * FROM employees WHERE условие;</code>\n\n<b>Примеры:</b>\n<code>SELECT * FROM employees WHERE age > 30;</code>\n<code>SELECT * FROM employees WHERE city = 'Москва';</code>\n<code>SELECT * FROM employees WHERE salary != 50000;</code>\n\n<b>Операторы сравнения:</b>\n<code>=</code>   — равно\n<code>!=</code>  — не равно\n<code>></code>   — больше\n<code><</code>   — меньше\n<code>>=</code>  — больше или равно\n<code><=</code>  — меньше или равно\n\n<b>Логические операторы:</b>\n<code>SELECT * FROM employees</code>\n<code>WHERE age > 25 AND city = 'Москва';</code>\n\n<code>SELECT * FROM employees</code>\n<code>WHERE city = 'Москва' OR city = 'СПб';</code>\n\n<b>Отрицание:</b>\n<code>SELECT * FROM employees WHERE NOT city = 'Казань';</code>",
+              "photo": null
+            },
+            "sql1_3": {
+              "title": "ORDER BY, BETWEEN, IN, LIKE",
+              "content": "<b>ORDER BY — сортировка результата:</b>\n<code>SELECT * FROM employees ORDER BY salary;</code>\n# По возрастанию (ASC — по умолчанию)\n\n<code>SELECT * FROM employees ORDER BY salary DESC;</code>\n# По убыванию\n\n<code>SELECT * FROM employees ORDER BY city ASC, salary DESC;</code>\n# Сначала по городу, потом по зарплате\n\n<b>BETWEEN — диапазон значений:</b>\n<code>SELECT * FROM employees WHERE salary BETWEEN 50000 AND 100000;</code>\n# Включительно оба конца!\n\n<b>IN — список значений:</b>\n<code>SELECT * FROM employees WHERE city IN ('Москва', 'СПб', 'Казань');</code>\n# Вместо трёх OR\n\n<code>SELECT * FROM employees WHERE city NOT IN ('Казань');</code>\n\n<b>LIKE — поиск по шаблону:</b>\n<code>SELECT * FROM employees WHERE name LIKE 'А%';</code>\n# Имена начинающиеся на А\n\n<code>SELECT * FROM employees WHERE name LIKE '%ов';</code>\n# Имена заканчивающиеся на ов\n\n<code>SELECT * FROM employees WHERE name LIKE '%ван%';</code>\n# Содержит ван\n\n% — любое количество символов\n_ — ровно один символ",
+              "photo": null
+            },
+            "sql1_4": {
+              "title": "Агрегатные функции",
+              "content": "Агрегатные функции считают итоговые значения по группе строк.\n\n<b>Основные функции:</b>\n<code>COUNT(*)</code> — количество строк\n<code>COUNT(column)</code> — количество непустых значений\n<code>SUM(column)</code> — сумма\n<code>AVG(column)</code> — среднее значение\n<code>MAX(column)</code> — максимум\n<code>MIN(column)</code> — минимум\n\n<b>Примеры:</b>\n<code>SELECT COUNT(*) FROM employees;</code>\n# Сколько всего сотрудников\n\n<code>SELECT AVG(salary) FROM employees;</code>\n# Средняя зарплата\n\n<code>SELECT MAX(salary), MIN(salary) FROM employees;</code>\n# Максимальная и минимальная зарплата\n\n<code>SELECT SUM(salary) FROM employees WHERE city = 'Москва';</code>\n# Суммарная зарплата москвичей\n\n<b>COUNT(</b>) vs COUNT(column):*\n<code>COUNT(*)</code> — считает все строки включая NULL\n<code>COUNT(column)</code> — пропускает NULL\n\n<code>SELECT COUNT(*), COUNT(phone) FROM employees;</code>\n# COUNT(*) = 100, COUNT(phone) = 73 (у 27 нет телефона)",
+              "photo": null
+            }
+          }
+        },
+        "sql2": {
+          "title": "2. Группировка — GROUP BY",
+          "subtopics": {
+            "sql2_1": {
+              "title": "GROUP BY — основы",
+              "content": "GROUP BY группирует строки с одинаковыми значениями и применяет агрегатную функцию к каждой группе.\n\n<b>Синтаксис:</b>\n<code>SELECT столбец, ФУНКЦИЯ(столбец)</code>\n<code>FROM таблица</code>\n<code>GROUP BY столбец;</code>\n\n<b>Пример — количество сотрудников по городам:</b>\n<code>SELECT city, COUNT(*) AS employees_count</code>\n<code>FROM employees</code>\n<code>GROUP BY city;</code>\n# Москва  — 45\n# СПб     — 30\n# Казань  — 15\n\n<b>Средняя зарплата по отделам:</b>\n<code>SELECT department, AVG(salary) AS avg_salary</code>\n<code>FROM employees</code>\n<code>GROUP BY department;</code>\n\n<b>Группировка по нескольким столбцам:</b>\n<code>SELECT city, department, COUNT(*)</code>\n<code>FROM employees</code>\n<code>GROUP BY city, department;</code>\n\nВажно: в SELECT можно писать только те столбцы, которые есть в GROUP BY, или агрегатные функции!",
+              "photo": null
+            },
+            "sql2_2": {
+              "title": "HAVING — фильтрация групп",
+              "content": "HAVING фильтрует результат после группировки — WHERE нельзя использовать с агрегатными функциями.\n\n<b>Правило:</b>\n<code>WHERE</code> — фильтрует строки ДО группировки\n<code>HAVING</code> — фильтрует группы ПОСЛЕ группировки\n\n<b>Пример — города где больше 10 сотрудников:</b>\n<code>SELECT city, COUNT(*) AS cnt</code>\n<code>FROM employees</code>\n<code>GROUP BY city</code>\n<code>HAVING COUNT(*) > 10;</code>\n\n<b>Отделы со средней зарплатой выше 80000:</b>\n<code>SELECT department, AVG(salary) AS avg_sal</code>\n<code>FROM employees</code>\n<code>GROUP BY department</code>\n<code>HAVING AVG(salary) > 80000;</code>\n\n<b>WHERE и HAVING вместе:</b>\n<code>SELECT department, AVG(salary)</code>\n<code>FROM employees</code>\n<code>WHERE city = 'Москва'</code>\n<code>GROUP BY department</code>\n<code>HAVING AVG(salary) > 70000;</code>\n# Сначала берём только москвичей (WHERE),\n# потом группируем и фильтруем группы (HAVING)\n\n<b>Порядок выполнения:</b>\nFROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY",
+              "photo": null
+            }
+          }
+        },
+        "sql3": {
+          "title": "3. Основы работы с датами",
+          "subtopics": {
+            "sql3_1": {
+              "title": "Типы дат и основные функции",
+              "content": "SQL работает с датами через специальные типы данных и функции.\n\n<b>Типы дат:</b>\n<code>DATE</code> — только дата: '2024-01-15'\n<code>TIME</code> — только время: '14:30:00'\n<code>DATETIME</code> — дата и время: '2024-01-15 14:30:00'\n<code>TIMESTAMP</code> — метка времени (с часовым поясом)\n\n<b>Текущая дата и время:</b>\n<code>SELECT NOW();</code>          — текущие дата и время\n<code>SELECT CURDATE();</code>      — текущая дата\n<code>SELECT CURTIME();</code>      — текущее время\n<code>SELECT CURRENT_DATE;</code>   — аналог CURDATE()\n\n<b>Извлечение части даты:</b>\n<code>SELECT YEAR(order_date) FROM orders;</code>\n<code>SELECT MONTH(order_date) FROM orders;</code>\n<code>SELECT DAY(order_date) FROM orders;</code>\n<code>SELECT HOUR(created_at) FROM logs;</code>\n<code>SELECT DAYOFWEEK(order_date) FROM orders;</code>\n# 1 = воскресенье, 2 = понедельник ... 7 = суббота",
+              "photo": null
+            },
+            "sql3_2": {
+              "title": "Фильтрация и вычисления с датами",
+              "content": "<b>Фильтрация по дате:</b>\n<code>SELECT * FROM orders</code>\n<code>WHERE order_date = '2024-01-15';</code>\n\n<code>SELECT * FROM orders</code>\n<code>WHERE order_date BETWEEN '2024-01-01' AND '2024-03-31';</code>\n\n<code>SELECT * FROM orders</code>\n<code>WHERE YEAR(order_date) = 2024 AND MONTH(order_date) = 1;</code>\n\n<b>Разница между датами — DATEDIFF:</b>\n<code>SELECT DATEDIFF('2024-12-31', '2024-01-01');</code>\n# 365 (разница в днях)\n\n<code>SELECT name, DATEDIFF(NOW(), hire_date) AS days_worked</code>\n<code>FROM employees;</code>\n\n<b>Прибавить/отнять время — DATE_ADD:</b>\n<code>SELECT DATE_ADD('2024-01-01', INTERVAL 30 DAY);</code>\n# 2024-01-31\n\n<code>SELECT DATE_ADD(NOW(), INTERVAL 1 MONTH);</code>\n# +1 месяц от сегодня\n\n<code>SELECT DATE_SUB(NOW(), INTERVAL 7 DAY);</code>\n# -7 дней от сегодня\n\n<b>Форматирование даты — DATE_FORMAT:</b>\n<code>SELECT DATE_FORMAT(order_date, '%d.%m.%Y') FROM orders;</code>\n# 15.01.2024",
+              "photo": null
+            }
+          }
+        },
+        "sql4": {
+          "title": "4. Соединения таблиц",
+          "subtopics": {
+            "sql4_1": {
+              "title": "Что такое JOIN и зачем он нужен",
+              "content": "JOIN объединяет строки из двух или более таблиц по условию.\n\n<b>Пример: две таблицы</b>\n\nТаблица users:\n<code>id | name</code>\n<code>1  | Анна</code>\n<code>2  | Иван</code>\n<code>3  | Мария</code>\n\nТаблица orders:\n<code>id | user_id | product</code>\n<code>1  | 1       | ноутбук</code>\n<code>2  | 2       | телефон</code>\n<code>3  | 1       | мышь</code>\n\n<b>Без JOIN — нельзя узнать кто что заказал.</b>\nС JOIN — можно соединить по user_id = id.\n\n<b>Виды JOIN:</b>\n<code>INNER JOIN</code> — только совпадающие строки\n<code>LEFT JOIN</code>  — все из левой + совпадения из правой\n<code>RIGHT JOIN</code> — все из правой + совпадения из левой\n<code>FULL JOIN</code>  — все строки из обеих таблиц\n\nСинтаксис:\n<code>SELECT поля</code>\n<code>FROM таблица1</code>\n<code>JOIN таблица2 ON таблица1.ключ = таблица2.ключ;</code>",
+              "photo": null
+            },
+            "sql4_2": {
+              "title": "INNER JOIN и LEFT JOIN",
+              "content": "<b>INNER JOIN — только совпадения:</b>\n<code>SELECT u.name, o.product</code>\n<code>FROM users u</code>\n<code>INNER JOIN orders o ON u.id = o.user_id;</code>\n# Анна — ноутбук\n# Анна — мышь\n# Иван — телефон\n# Мария не попадёт — у неё нет заказов!\n\n<b>LEFT JOIN — все из левой таблицы:</b>\n<code>SELECT u.name, o.product</code>\n<code>FROM users u</code>\n<code>LEFT JOIN orders o ON u.id = o.user_id;</code>\n# Анна  — ноутбук\n# Анна  — мышь\n# Иван  — телефон\n# Мария — NULL (нет заказов, но попадает!)\n\n<b>Найти пользователей БЕЗ заказов:</b>\n<code>SELECT u.name</code>\n<code>FROM users u</code>\n<code>LEFT JOIN orders o ON u.id = o.user_id</code>\n<code>WHERE o.user_id IS NULL;</code>\n# Мария\n\n<b>Псевдонимы таблиц:</b>\n<code>FROM users u</code> — u это сокращение для users\nЭто удобно когда имена таблиц длинные.",
+              "photo": null
+            },
+            "sql4_3": {
+              "title": "Несколько JOIN и RIGHT/FULL JOIN",
+              "content": "<b>Несколько JOIN в одном запросе:</b>\n<code>SELECT u.name, o.product, p.price</code>\n<code>FROM users u</code>\n<code>JOIN orders o ON u.id = o.user_id</code>\n<code>JOIN products p ON o.product_id = p.id;</code>\n\n<b>RIGHT JOIN — все из правой таблицы:</b>\n<code>SELECT u.name, o.product</code>\n<code>FROM users u</code>\n<code>RIGHT JOIN orders o ON u.id = o.user_id;</code>\n# Все заказы попадают, даже если пользователь удалён\n\n<b>FULL JOIN — все строки из обеих:</b>\n<code>SELECT u.name, o.product</code>\n<code>FROM users u</code>\n<code>FULL OUTER JOIN orders o ON u.id = o.user_id;</code>\n# Все пользователи + все заказы\n# NULL там где нет совпадений\n\n<b>Самосоединение (SELF JOIN) — таблица с собой:</b>\n<code>SELECT e.name, m.name AS manager</code>\n<code>FROM employees e</code>\n<code>LEFT JOIN employees m ON e.manager_id = m.id;</code>\n# Каждый сотрудник + его менеджер из той же таблицы\n\nПодсказка:\nINNER — строгое пересечение\nLEFT — приоритет левой таблицы\nRIGHT — приоритет правой таблицы\nFULL — все данные из обеих",
+              "photo": null
+            }
+          }
+        },
+        "sql5": {
+          "title": "5. Подзапросы в SQL",
+          "subtopics": {
+            "sql5_1": {
+              "title": "Что такое подзапрос?",
+              "content": "Подзапрос — это SELECT внутри другого SELECT. Позволяет использовать результат одного запроса в другом.\n\n<b>Синтаксис:</b>\n<code>SELECT * FROM таблица</code>\n<code>WHERE столбец = (SELECT ... FROM ...);</code>\n\n<b>Пример — сотрудники с зарплатой выше средней:</b>\n<code>SELECT name, salary</code>\n<code>FROM employees</code>\n<code>WHERE salary > (SELECT AVG(salary) FROM employees);</code>\n\nВнутренний запрос выполняется первым:\n1. <code>SELECT AVG(salary) FROM employees</code> -> 75000\n2. <code>SELECT name, salary FROM employees WHERE salary > 75000</code>\n\n<b>Подзапрос в FROM:</b>\n<code>SELECT dept, avg_sal</code>\n<code>FROM (</code>\n<code>    SELECT department AS dept, AVG(salary) AS avg_sal</code>\n<code>    FROM employees</code>\n<code>    GROUP BY department</code>\n<code>) AS dept_stats</code>\n<code>WHERE avg_sal > 80000;</code>\n\nПодзапрос в FROM должен иметь псевдоним (AS dept_stats)!",
+              "photo": null
+            },
+            "sql5_2": {
+              "title": "IN, EXISTS, коррелированные подзапросы",
+              "content": "<b>Подзапрос с IN:</b>\n<code>SELECT name FROM employees</code>\n<code>WHERE department_id IN (</code>\n<code>    SELECT id FROM departments WHERE city = 'Москва'</code>\n<code>);</code>\n# Сотрудники московских отделов\n\n<b>EXISTS — проверяет существование строк:</b>\n<code>SELECT name FROM users u</code>\n<code>WHERE EXISTS (</code>\n<code>    SELECT 1 FROM orders o WHERE o.user_id = u.id</code>\n<code>);</code>\n# Пользователи у которых есть хоть один заказ\n\n<code>NOT EXISTS</code> — у которых нет заказов:\n<code>WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id)</code>\n\n<b>Коррелированный подзапрос — ссылается на внешний:</b>\n<code>SELECT name, salary,</code>\n<code>    (SELECT AVG(salary) FROM employees e2</code>\n<code>     WHERE e2.department = e1.department) AS dept_avg</code>\n<code>FROM employees e1;</code>\n# Для каждого сотрудника — его зарплата и средняя по отделу\n\nIN — когда нужен список значений\nEXISTS — когда нужно проверить наличие\nEXISTS часто быстрее IN на больших данных",
+              "photo": null
+            }
+          }
+        },
+        "sql6": {
+          "title": "6. Оконные функции",
+          "subtopics": {
+            "sql6_1": {
+              "title": "Что такое оконные функции?",
+              "content": "Оконные функции выполняют вычисление по набору строк (окну), не сворачивая их в одну — в отличие от GROUP BY.\n\n<b>Синтаксис:</b>\n<code>ФУНКЦИЯ() OVER (PARTITION BY столбец ORDER BY столбец)</code>\n\n<b>Пример — зарплата + средняя по отделу в одной строке:</b>\n\nС GROUP BY — теряем детали:\n<code>SELECT department, AVG(salary) FROM employees GROUP BY department;</code>\n# Только отдел и среднее, без имён!\n\nС оконной функцией — сохраняем все строки:\n<code>SELECT name, department, salary,</code>\n<code>    AVG(salary) OVER (PARTITION BY department) AS dept_avg</code>\n<code>FROM employees;</code>\n# Анна | IT | 90000 | 85000\n# Иван | IT | 80000 | 85000\n# Мария| HR | 70000 | 70000\n\nPARTITION BY — разбивает на группы (как GROUP BY)\nNO PARTITION — считает по всей таблице\n\n<b>Без PARTITION — среднее по всей таблице:</b>\n<code>AVG(salary) OVER ()</code> — скобки обязательны!",
+              "photo": null
+            },
+            "sql6_2": {
+              "title": "ROW_NUMBER, RANK, DENSE_RANK",
+              "content": "Функции ранжирования — нумеруют или ранжируют строки внутри группы.\n\n<b>ROW_NUMBER — порядковый номер:</b>\n<code>SELECT name, salary,</code>\n<code>    ROW_NUMBER() OVER (ORDER BY salary DESC) AS row_num</code>\n<code>FROM employees;</code>\n# 1, 2, 3, 4... (всегда уникальные номера)\n\n<b>RANK — ранг с пропусками:</b>\n<code>SELECT name, salary,</code>\n<code>    RANK() OVER (ORDER BY salary DESC) AS rank</code>\n<code>FROM employees;</code>\n# При одинаковой зарплате: 1, 2, 2, 4 (пропуск!)\n\n<b>DENSE_RANK — ранг без пропусков:</b>\n<code>SELECT name, salary,</code>\n<code>    DENSE_RANK() OVER (ORDER BY salary DESC) AS drank</code>\n<code>FROM employees;</code>\n# При одинаковой зарплате: 1, 2, 2, 3 (без пропуска)\n\n<b>Топ-1 сотрудник по зарплате в каждом отделе:</b>\n<code>SELECT * FROM (</code>\n<code>    SELECT name, department, salary,</code>\n<code>        ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rn</code>\n<code>    FROM employees</code>\n<code>) t</code>\n<code>WHERE rn = 1;</code>",
+              "photo": null
+            },
+            "sql6_3": {
+              "title": "LAG, LEAD и накопительные функции",
+              "content": "<b>LAG — значение предыдущей строки:</b>\n<code>SELECT month, revenue,</code>\n<code>    LAG(revenue) OVER (ORDER BY month) AS prev_revenue</code>\n<code>FROM monthly_sales;</code>\n# Январь: 100 | NULL\n# Февраль: 150 | 100\n# Март: 120 | 150\n\n<b>Изменение по сравнению с прошлым месяцем:</b>\n<code>SELECT month, revenue,</code>\n<code>    revenue - LAG(revenue) OVER (ORDER BY month) AS diff</code>\n<code>FROM monthly_sales;</code>\n\n<b>LEAD — значение следующей строки:</b>\n<code>SELECT month, revenue,</code>\n<code>    LEAD(revenue) OVER (ORDER BY month) AS next_revenue</code>\n<code>FROM monthly_sales;</code>\n\n<b>SUM() OVER — накопительная сумма:</b>\n<code>SELECT month, revenue,</code>\n<code>    SUM(revenue) OVER (ORDER BY month) AS cumulative</code>\n<code>FROM monthly_sales;</code>\n# Январь: 100 | 100\n# Февраль: 150 | 250\n# Март: 120 | 370\n\n<b>Скользящее среднее за 3 месяца:</b>\n<code>AVG(revenue) OVER (ORDER BY month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)</code>",
+              "photo": null
+            }
+          }
+        },
+        "sql7": {
+          "title": "7. Задачи с собеседований",
+          "subtopics": {
+            "sql7_1": {
+              "title": "Задачи на SELECT и фильтрацию",
+              "content": "<b>Задача 1: Найти дубликаты в таблице</b>\n<code>SELECT email, COUNT(*) AS cnt</code>\n<code>FROM users</code>\n<code>GROUP BY email</code>\n<code>HAVING COUNT(*) > 1;</code>\n\n<b>Задача 2: Второй по величине оклад</b>\n<code>SELECT MAX(salary)</code>\n<code>FROM employees</code>\n<code>WHERE salary < (SELECT MAX(salary) FROM employees);</code>\n\nИли через LIMIT:\n<code>SELECT DISTINCT salary</code>\n<code>FROM employees</code>\n<code>ORDER BY salary DESC</code>\n<code>LIMIT 1 OFFSET 1;</code>\n\n<b>Задача 3: Удалить дубликаты, оставив одну запись</b>\n<code>DELETE FROM users</code>\n<code>WHERE id NOT IN (</code>\n<code>    SELECT MIN(id) FROM users GROUP BY email</code>\n<code>);</code>\n\n<b>Задача 4: Пользователи, не сделавшие ни одного заказа</b>\n<code>SELECT u.name</code>\n<code>FROM users u</code>\n<code>LEFT JOIN orders o ON u.id = o.user_id</code>\n<code>WHERE o.id IS NULL;</code>",
+              "photo": null
+            },
+            "sql7_2": {
+              "title": "Задачи на GROUP BY и JOIN",
+              "content": "<b>Задача 1: Топ-3 города по количеству заказов</b>\n<code>SELECT city, COUNT(*) AS orders_cnt</code>\n<code>FROM users u</code>\n<code>JOIN orders o ON u.id = o.user_id</code>\n<code>GROUP BY city</code>\n<code>ORDER BY orders_cnt DESC</code>\n<code>LIMIT 3;</code>\n\n<b>Задача 2: Процент от общей суммы</b>\n<code>SELECT department, SUM(salary) AS dept_sum,</code>\n<code>    ROUND(SUM(salary) * 100.0 / (SELECT SUM(salary) FROM employees), 2) AS pct</code>\n<code>FROM employees</code>\n<code>GROUP BY department;</code>\n\n<b>Задача 3: Сотрудники с зарплатой выше средней по своему отделу</b>\n<code>SELECT name, department, salary</code>\n<code>FROM employees e</code>\n<code>WHERE salary > (</code>\n<code>    SELECT AVG(salary)</code>\n<code>    FROM employees</code>\n<code>    WHERE department = e.department</code>\n<code>);</code>\n\n<b>Задача 4: Ежемесячный прирост продаж</b>\n<code>SELECT month, revenue,</code>\n<code>    ROUND((revenue - LAG(revenue) OVER (ORDER BY month)) * 100.0 /</code>\n<code>        LAG(revenue) OVER (ORDER BY month), 2) AS growth_pct</code>\n<code>FROM monthly_sales;</code>",
+              "photo": null
+            }
+          }
+        }
+      }
+    }
+  }
+}
